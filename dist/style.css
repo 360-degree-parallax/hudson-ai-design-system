@@ -526,11 +526,11 @@ input[type=range]{width:100%;accent-color:var(--text-primary)}
 
 /* ===== Icon library ===== */
 .ico{flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
-.ico .f{fill:currentColor;fill-opacity:.12}.ico .s{fill:currentColor;stroke:none}.ico .p{fill:var(--action-bg);stroke:none}
+.ico .d{stroke-width:2.6}.ico .t{stroke-width:1.25}
 .icon-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-bottom:var(--s6)}
 .icon-group{margin:var(--s8) 0 var(--s1)}.icon-lead{font-size:var(--hds-font-body-sm);color:var(--text-secondary);max-width:60ch;margin-bottom:var(--s4)}
-.icon-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:var(--s3)}@media(max-width:63.999rem){.icon-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:35.999rem){.icon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.icon-tile{width:100%;display:flex;flex-direction:column;align-items:center;gap:var(--s1);padding:var(--s4) var(--s2) var(--s3);background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--r3);color:var(--text-primary);font:inherit;cursor:pointer;min-width:0}
+.icon-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:var(--s3)}.icon-grid.cols-10{grid-template-columns:repeat(10,minmax(0,1fr))}@media(max-width:63.999rem){.icon-grid,.icon-grid.cols-10{grid-template-columns:repeat(5,minmax(0,1fr))}}@media(max-width:35.999rem){.icon-grid,.icon-grid.cols-10{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.icon-tile{width:100%;display:flex;flex-direction:column;align-items:center;gap:var(--s1);padding:var(--s4) var(--s1) var(--s3);background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--r3);color:var(--text-primary);font:inherit;cursor:pointer;min-width:0}
 .icon-tile:hover{border-color:var(--border-control);background:var(--bg-subtle)}
 .icon-art{display:grid;place-items:center;width:3rem;height:3rem;margin-bottom:var(--s1)}.icon-art .ico{width:2rem;height:2rem}
 .icon-tile strong{font-size:var(--hds-font-body-sm);font-weight:600;overflow-wrap:anywhere;text-align:center}.icon-tile code{font-size:.75rem;color:var(--text-secondary);overflow-wrap:anywhere}
