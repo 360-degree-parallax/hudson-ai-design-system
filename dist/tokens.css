@@ -36,6 +36,8 @@
   --warm-600: var(--hds-color-warm-600);
   --hds-color-warm-700: #4A443E;
   --warm-700: var(--hds-color-warm-700);
+  --hds-color-warm-800: #35312C;
+  --warm-800: var(--hds-color-warm-800);
   --hds-color-warm-900: #282521;
   --warm-900: var(--hds-color-warm-900);
   --hds-color-warm-950: #171614;
@@ -43,16 +45,22 @@
   --hds-bg-canvas: var(--hds-color-warm-50);
   --hds-bg-surface: var(--hds-color-warm-0);
   --hds-bg-subtle: var(--hds-color-warm-100);
+  --hds-bg-inverse: var(--hds-color-warm-950);
   --hds-text-primary: var(--hds-color-warm-950);
   --hds-text-secondary: var(--hds-color-warm-600);
   --hds-text-muted: var(--hds-color-warm-600);
+  --hds-text-inverse: var(--hds-color-warm-0);
   --hds-text-brand: var(--hds-color-orange-700);
   --hds-border-subtle: var(--hds-color-warm-200);
   --hds-border-control: var(--hds-color-warm-500);
+  --hds-field-bg: var(--hds-color-warm-100);
+  --hds-field-border: var(--hds-color-warm-200);
+  --hds-field-border-hover: var(--hds-color-warm-300);
   --hds-action-primary-bg: var(--hds-color-orange-500);
   --hds-action-primary-hover: var(--hds-color-orange-600);
   --hds-action-primary-pressed: var(--hds-color-orange-700);
   --hds-action-primary-fg: var(--hds-color-warm-950);
+  --hds-action-primary-pressed-fg: var(--hds-color-warm-0);
   --hds-action-selected-bg: var(--hds-color-orange-100);
   --hds-action-selected-fg: var(--hds-color-orange-700);
   --hds-focus-ring: var(--hds-color-warm-950);
@@ -98,11 +106,15 @@
   --hds-elevation-1: 0 2px 8px rgb(23 22 20 / .08);
   --hds-elevation-2: 0 8px 24px rgb(23 22 20 / .12);
   --hds-elevation-3: 0 16px 48px rgb(23 22 20 / .18);
-  --hds-status-danger: #B61D3A;
-  --hds-status-danger-surface: #FEEFF0;
-  --hds-status-success: #17643B;
-  --hds-status-success-surface: #EDF7F0;
-  --hds-status-warning: #805500;
-  --hds-status-warning-surface: #FFF7E0;
+  --hds-status-danger: var(--hds-color-orange-700);
+  --hds-status-danger-surface: var(--hds-color-orange-100);
+  --hds-status-danger-border: var(--hds-color-orange-500);
+  --hds-status-success: var(--hds-color-warm-950);
+  --hds-status-success-surface: var(--hds-color-warm-0);
+  --hds-status-success-border: var(--hds-color-warm-700);
+  --hds-status-warning: var(--hds-color-orange-800);
+  --hds-status-warning-surface: var(--hds-color-orange-50);
+  --hds-status-warning-border: var(--hds-color-orange-200);
 }
+[data-theme="dark"]{color-scheme:dark;--hds-bg-canvas:var(--hds-color-warm-950);--hds-bg-surface:var(--hds-color-warm-900);--hds-bg-subtle:var(--hds-color-warm-800);--hds-bg-inverse:var(--hds-color-warm-100);--hds-text-primary:var(--hds-color-warm-50);--hds-text-secondary:var(--hds-color-warm-300);--hds-text-muted:var(--hds-color-warm-300);--hds-text-inverse:var(--hds-color-warm-950);--hds-text-brand:var(--hds-color-orange-400);--hds-border-subtle:var(--hds-color-warm-700);--hds-border-control:var(--hds-color-warm-500);--hds-field-bg:var(--hds-color-warm-800);--hds-field-border:var(--hds-color-warm-700);--hds-field-border-hover:var(--hds-color-warm-600);--hds-action-primary-hover:var(--hds-color-orange-400);--hds-action-primary-pressed:var(--hds-color-orange-300);--hds-action-primary-pressed-fg:var(--hds-color-warm-950);--hds-action-selected-bg:var(--hds-color-orange-900);--hds-action-selected-fg:var(--hds-color-orange-300);--hds-focus-ring:var(--hds-color-warm-50);--hds-status-danger:var(--hds-color-orange-400);--hds-status-danger-surface:var(--hds-color-orange-900);--hds-status-danger-border:var(--hds-color-orange-500);--hds-status-success:var(--hds-color-warm-50);--hds-status-success-surface:var(--hds-color-warm-900);--hds-status-success-border:var(--hds-color-warm-300);--hds-status-warning:var(--hds-color-orange-300);--hds-status-warning-surface:var(--hds-color-orange-900);--hds-status-warning-border:var(--hds-color-orange-700);--hds-elevation-0:none;--hds-elevation-1:0 2px 8px rgb(0 0 0 / .32);--hds-elevation-2:0 8px 24px rgb(0 0 0 / .44);--hds-elevation-3:0 16px 48px rgb(0 0 0 / .6);}
 [data-theme="inverse"]{--hds-bg-canvas:var(--hds-color-warm-950);--hds-bg-surface:var(--hds-color-warm-900);--hds-text-primary:var(--hds-color-warm-0);--hds-text-secondary:var(--hds-color-warm-300);--hds-focus-ring:var(--hds-color-warm-0);}
