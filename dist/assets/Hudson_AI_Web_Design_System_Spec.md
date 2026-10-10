@@ -65,17 +65,17 @@ Hudson의 인상은 정확함, 명료함, 작업 속도다. 흰색과 웜그레�
 | AI Kit | ScreenBrief, 토큰 manifest, 컴포넌트 registry, 위임 프롬프트, 검수 | /ai-kit |
 | Governance | 버전, 변경 이력, 기여, deprecated 항목 | /changelog |
 
-Foundation과 Typography를 기본 진입 예제로 구현한다. 홈은 큰 홍보용 히어로 대신 “규칙 찾기”, “컴포넌트 사용”, “AI에 위임” 세 가지 진입 경로를 제공한다.
+홈은 한 줄 선언과 검색, 대분류 허브 타일, AI Kit 소개, 팔레트 비율, 자주 찾는 문서로 구성한다. 허브와 문서는 모두 같은 route manifest에서 생성한다.
 
 ### 4.2 문서 화면
 
-- 상단 Header: 높이 64px, Hudson AI / Design System, 검색, 현재 버전. 스킵 링크는 첫 Tab에서 노출한다.
-- 1280px 이상: 좌측 탐색 240px + 중앙 minmax(0, 1fr) + 우측 목차 192px. 전체 최대 폭 1440px, 열 간격 32px, 외곽 패딩 32px.
-- 1024~1279px: 좌측 224px + 본문, 우측 목차는 본문 상단의 접이식 목록으로 이동.
-- 768~1023px: 메뉴 버튼과 Drawer, 본문 24px 패딩. 검색을 계속 접근 가능하게 유지.
-- 768px 미만: 본문 16px 패딩, 예제·코드는 독립 스크롤. 전체 페이지에 가로 스크롤을 만들지 않는다.
+- 상단 Global nav: 높이 64px, 로고 · 대분류 5개(파운데이션·컴포넌트·패턴·가이드·AI Kit) · 검색. 반투명 배경과 하단 1px 구분선. 스킵 링크는 첫 Tab에서 노출한다.
+- 소메뉴는 탐색 막대에 두지 않는다. 각 대분류는 허브 페이지(/foundations, /components, /patterns, /guides)를 가지며, 그 본문에서 문서를 카드로 보여주고 분류 칩으로 거른다.
+- 문서 페이지: Global nav 아래 48px sticky Local nav(페이지 제목 + 섹션 링크 + 위임 버튼). 좌측 탐색과 우측 목차는 두지 않는다.
+- 본문 컨테이너 최대 72rem, 좌우 여백 1024px 이상 32px · 768–1023px 24px · 768px 미만 16px. 1024px 미만에서 대분류는 메뉴 버튼과 Drawer로 이동하고, Local nav 링크는 가로 스크롤한다.
+- 페이지 하단: 같은 분류 안의 이전·다음 문서, 그리고 전체 문서를 나열한 사이트맵 푸터.
 - 본문 설명은 최대 68ch, 예제와 API 표는 본문 영역 전체를 사용할 수 있다. sticky 영역의 top은 header 높이와 간격 토큰을 합산한다.
-- 긴 메뉴는 좌측 영역에서만 스크롤 가능하게 하되 중첩 스크롤이 키보드 접근을 막지 않도록 한다. 활성 문서에 aria-current="page", 현재 목차에 aria-current="location"을 사용한다.
+- 현재 대분류에 aria-current, Local nav의 현재 섹션에 aria-current="location"을 사용한다. sticky 영역이 초점을 가리지 않도록 scroll-padding-top을 두 막대 높이의 합으로 둔다.
 - URL 직접 진입·새로고침·뒤로가기·해시 링크가 모두 작동한다. 예제의 선택 상태는 필요할 때 URL query로 공유한다.
 
 ### 4.3 모든 페이지의 공통 템플릿
@@ -125,6 +125,8 @@ Typography 페이지에는 한글/영문/혼합 예문, 역할별 크기·행간
 | action.selected.bg | orange-50 | warm-700 |
 | action.selected.fg | orange-700 | warm-0 |
 | focus.ring | warm-950 | warm-0 |
+
+화면 면적 기준 사용 비율은 바탕(warm-0·50) 60%, 구조(warm-100–600) 25%, 차콜(warm-900·950) 12%, 포인트(orange) 3%로 시작한다. 오렌지는 화면당 주요 행동 하나와 선택 상태에만 쓴다. 이 비율은 tokens.json의 colorRatio에 기록한다.
 
 색은 primitive → semantic → component의 3단계로 참조한다. 화면 파일에서 HEX를 직접 사용하지 않는다. 실시간 상태·오류는 브랜드 컬러로 통합하지 않는다. 최소한의 상태색으로 danger #B42318 / surface #FFF1F0, success #17643B / surface #EDF7F0, warning #805500 / surface #FFF7E0를 별도 정의한다. inverse에서는 더 밝은 foreground와 어두운 surface의 조합을 추가하고 실제 대비 테스트 후 활성화한다. 상태는 항상 텍스트·아이콘과 함께 보여준다.
 
