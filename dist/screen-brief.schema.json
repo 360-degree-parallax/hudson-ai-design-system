@@ -29,7 +29,8 @@
     },
     "screenId": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
     },
     "purpose": {
       "type": "string",
@@ -60,14 +61,16 @@
         },
         "actionId": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
         }
       }
     },
     "secondaryActions": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       }
     },
     "layout": {
@@ -89,18 +92,47 @@
         "inverse"
       ]
     },
+    "allowedComponents": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "Button",
+          "Link",
+          "Field",
+          "TextInput",
+          "Select",
+          "Combobox",
+          "Checkbox",
+          "Radio",
+          "Switch",
+          "Tabs",
+          "Badge",
+          "Alert",
+          "Toast",
+          "Tooltip",
+          "Dialog",
+          "Drawer",
+          "Table",
+          "Pagination",
+          "Skeleton",
+          "Progress"
+        ]
+      }
+    },
     "contentPriority": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       }
     },
     "requiredStates": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       }
     },
     "dataSource": {
@@ -115,7 +147,8 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1
       }
     }
   }

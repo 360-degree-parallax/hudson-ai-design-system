@@ -276,7 +276,7 @@ tests/e2e/           키보드·라우팅·확대·반응형 검수
 
 ## 12. 토큰·반응형 CSS 시작 예시
 
-다음은 구조 예시다. 최종 코드는 토큰 원본에서 생성하며 아래 CSS를 별도 원본으로 관리하지 않는다.
+다음은 구조 예시다. 최종 코드는 토큰 원본에서 생성하며 아래 CSS를 별도 원본으로 관리하지 않는다. spacing 토큰 이름은 px 값을 그대로 쓴다(`--hds-space-16` = 16px = 1rem).
 
 ```css
 :root {
@@ -290,9 +290,9 @@ tests/e2e/           키보드·라우팅·확대·반응형 검수
   --hds-text-primary: var(--hds-color-warm-950);
   --hds-action-primary-bg: var(--hds-color-orange-500);
   --hds-action-primary-fg: var(--hds-color-warm-950);
-  --hds-space-4: 1rem;
-  --hds-space-6: 1.5rem;
-  --hds-space-8: 2rem;
+  --hds-space-16: 1rem;   /* 이름 = px 값 */
+  --hds-space-24: 1.5rem;
+  --hds-space-32: 2rem;
   --hds-radius-control: .5rem;
   --hds-font-body-md: 1rem;
   --hds-line-body-md: 1.6;
@@ -302,10 +302,10 @@ body { color: var(--hds-text-primary); background: var(--hds-bg-canvas); }
 .docs-shell {
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr) 12rem;
-  gap: var(--hds-space-8);
+  gap: var(--hds-space-32);
   max-width: 90rem;
   margin-inline: auto;
-  padding-inline: var(--hds-space-8);
+  padding-inline: var(--hds-space-32);
 }
 .docs-main { min-width: 0; }
 .prose { max-width: 68ch; overflow-wrap: anywhere; }
@@ -322,11 +322,11 @@ body { color: var(--hds-text-primary); background: var(--hds-bg-canvas); }
   /* 오른쪽 목차는 본문 상단의 접이식 목차로 옮긴다. 단순히 삭제하지 않는다. */
 }
 @media (max-width: 63.999rem) {
-  .docs-shell { grid-template-columns: minmax(0, 1fr); padding-inline: var(--hds-space-6); }
+  .docs-shell { grid-template-columns: minmax(0, 1fr); padding-inline: var(--hds-space-24); }
   /* 왼쪽 탐색은 접근 가능한 Drawer로 전환한다. */
 }
 @media (max-width: 47.999rem) {
-  .docs-shell { padding-inline: var(--hds-space-4); }
+  .docs-shell { padding-inline: var(--hds-space-16); }
 }
 @media (prefers-reduced-motion: reduce) {
   .motion-element { transition-duration: 0ms; animation: none; }
