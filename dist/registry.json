@@ -1932,9 +1932,10 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "current.color": "text.primary",
-        "button.border": "border.control",
-        "disabled.color": "text.secondary"
+        "action.color": "text.primary",
+        "current.color": "text.secondary",
+        "disabled.color": "text.secondary",
+        "hover.background": "bg.subtle"
       },
       "keyboardBehavior": [
         {
