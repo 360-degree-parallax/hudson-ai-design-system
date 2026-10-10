@@ -53,5 +53,6 @@ npm run check
 - 헤더의 테마 토글 또는 `?theme=dark`로 다크 모드, KO/EN 토글 또는 `?lang=en`으로 영어 화면을 바로 볼 수 있습니다. 선택은 브라우저(localStorage)에만 저장됩니다.
 - 영어 화면은 `dist/i18n-en.json`(문구 사전)과 `dist/spec.en.json`(전체 명세 영문판)을 사용합니다. 복사되는 AI 위임 프롬프트·계약 JSON도 영어로 나옵니다. 사전에 없는 문구는 한국어로 남으므로 새 문구를 추가하면 사전도 갱신하세요.
 - 모든 색은 오렌지·차콜·웜그레이·화이트 팔레트 안에서만 씁니다. 상태색(성공·경고·오류)도 `--hds-status-*` 토큰이 팔레트 램프를 참조하며, 초록·노랑·빨강은 쓰지 않습니다. 의미는 아이콘·글자·채움 방식으로 함께 전달합니다.
-- 새 토큰(이유·영향): `warm-800`(다크 입력 바탕), `bg.inverse`/`text.inverse`(Badge·Toast·Tooltip 차콜 면), `field.bg/border/border.hover`(연한 입력 필드), `action.primary.pressed.fg`, `status.*.border`. 모두 `generate.mjs`가 라이트·다크 대비 4.5:1을 검사합니다.
+- 새 토큰(이유·영향): `warm-800`(다크 입력 바탕), `bg.inverse`/`text.inverse`(차콜 inverse 면; Toast·Tooltip은 이후 오렌지 포인트 면 `action.primary.*`로 변경), `field.bg/border/border.hover`(연한 입력 필드), `action.primary.pressed.fg`, `status.*.border`. 모두 `generate.mjs`가 라이트·다크 대비 4.5:1을 검사합니다.
 - 알려진 절충: 연한 입력 필드 경계는 인접 대비 3:1에 못 미칩니다(요청에 따른 선택). 내부 글자·placeholder는 4.5:1을 유지합니다.
+- 미니멀 피드백 규칙: Alert·Toast·Dialog에는 아이콘을 쓰지 않습니다. Alert는 옅은 면+왼쪽 표시선, Dialog와 Pagination은 텍스트 액션이며, Toast·Tooltip은 오렌지 면+차콜 글자입니다. 언어 토글 라벨은 모든 화면에서 KO·EN입니다. 이 규칙은 명세 §0·§5·§8과 AI 위임 프롬프트(`basePrompt`)에 들어 있습니다.
