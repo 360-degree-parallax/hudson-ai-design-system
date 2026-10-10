@@ -211,7 +211,7 @@ disabled는 HTML disabled로 동작을 차단한다. 비활성 이유를 hover t
 
 폼은 blur 또는 제출 시 검증하고 이후에는 입력에 따라 오류를 해소한다. 제출 실패 시 오류 요약과 첫 잘못된 필드로의 이동 경로를 제공한다. placeholder는 label을 대체하지 않는다. readOnly와 disabled를 시각·동작상 구분한다.
 
-Tooltip은 설명용이며 필수 정보나 인터랙티브 콘텐츠를 담지 않는다. 클릭·키보드로 조작해야 하는 내용은 Popover로 분리한다. Toast는 보조 확인에 사용하고 중요한 실패는 본문 Alert로 남긴다. 메뉴와 dialog의 초점·Esc·중첩 동작은 접근성 primitive의 검증된 패턴을 사용한다.
+Tooltip은 설명용이며 필수 정보나 인터랙티브 콘텐츠를 담지 않는다. 클릭·키보드로 조작해야 하는 내용은 Popover로 분리한다. Toast는 보조 확인에 사용하고 중요한 실패는 본문 Alert로 남긴다. 메뉴와 dialog의 초점·Esc·중첩 동작은 접근성 primitive의 검증된 패턴을 사용한다. 컴포넌트 톤 체계: Badge·Alert·Toast·Dialog 아이콘은 neutral·success·warning·error 네 톤을 쓰고 면(status surface)·테두리(accent 22% 혼합)·아이콘/점(accent)·글자(fg) 네 단계로만 조합한다. 새 토큰은 만들지 않고 기존 status·warm 토큰을 파생한다. Toast·Tooltip은 inverse 면(warm-950/warm-0)을 쓰고 Toast의 톤은 아이콘 칩에만 적용한다. Dialog는 머리(아이콘·제목·설명·닫기)·본문·바닥(canvas 면, 취소 → 주요 행동) 구조이며 삭제처럼 되돌릴 수 없는 행동은 error 톤과 danger 버튼을 쓰고 초점은 취소에 둔다. 체크박스·라디오·스위치·진행률·선택 탭은 선택 상태에만 #FD4D20을 쓴다.
 
 ### 8.2 Button API 예시
 

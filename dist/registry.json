@@ -1309,7 +1309,7 @@
       "events": [
         "action"
       ],
-      "code": "<div class=\"callout neutral\" role=\"alert\">\n  <span class=\"callout-icon\" aria-hidden=\"true\">ⓘ</span>\n  <div>\n    <strong>파일을 처리하지 못했어요.</strong>\n    <p>입력한 정보는 유지돼요. 다시 시도하거나 파일 형식을 확인하세요.</p>\n    <button type=\"button\" class=\"button secondary\">다시 시도</button>\n  </div>\n</div>",
+      "code": "<div class=\"alert\" data-tone=\"error\" role=\"alert\">\n  <svg class=\"tone-icon\" aria-hidden=\"true\">…</svg>\n  <div>\n    <strong class=\"alert-title\">파일을 처리하지 못했어요.</strong>\n    <p class=\"alert-body\">입력한 정보는 유지돼요. 다시 시도하거나 파일 형식을 확인하세요.</p>\n  </div>\n  <div class=\"alert-actions\">\n    <button type=\"button\" class=\"button secondary sm\">다시 시도</button>\n  </div>\n</div>",
       "examples": [
         "/components/alert"
       ],
@@ -1404,7 +1404,7 @@
         "show",
         "hide"
       ],
-      "code": "<!-- 페이지에 한 번만 두고 텍스트만 바꿔요 -->\n<div class=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n\n<script>\n  toast.textContent = \"변경 사항을 저장했어요.\";\n  toast.classList.add(\"visible\");\n</script>",
+      "code": "<!-- 페이지에 한 번만 두고 내용만 바꿔요. 아이콘 면은 톤(success·info)만 바꿔요 -->\n<div class=\"toast\" role=\"status\" aria-live=\"polite\"></div>\n\n<script>\n  toast.innerHTML = `<span class=\"toast-icon\" data-tone=\"success\">${icon}</span><span>변경 사항을 저장했어요.</span>`;\n  toast.classList.add(\"visible\");\n</script>",
       "examples": [
         "/components/toast"
       ],
@@ -1502,7 +1502,7 @@
         "open",
         "close"
       ],
-      "code": "<button type=\"button\" class=\"icon-button\" aria-label=\"자막 다운로드\" aria-describedby=\"tip-download\">↓</button>\n<span role=\"tooltip\" id=\"tip-download\" hidden>SRT 형식으로 내려받아요</span>",
+      "code": "<span class=\"tooltip-wrap\">\n  <button type=\"button\" class=\"icon-button\" aria-label=\"자막 다운로드\" aria-describedby=\"tip-download\">↓</button>\n  <span class=\"tooltip\" role=\"tooltip\" id=\"tip-download\">SRT 형식으로 내려받아요</span>\n</span>\n<!-- hover·focus에서 .visible 추가, Esc·blur에서 제거 -->",
       "examples": [
         "/components/tooltip"
       ],
@@ -1621,7 +1621,7 @@
         "close",
         "confirm"
       ],
-      "code": "<dialog id=\"delete-dialog\" aria-labelledby=\"delete-title\">\n  <h2 id=\"delete-title\">프로젝트를 삭제할까요?</h2>\n  <p>삭제하면 더빙 결과와 자막이 함께 사라져요.</p>\n  <button type=\"button\" class=\"button secondary\">취소</button>\n  <button type=\"button\" class=\"button danger\">프로젝트 삭제</button>\n</dialog>\n<!-- showModal()로 열면 초점 가두기와 Esc 닫기가 기본 제공돼요 -->",
+      "code": "<dialog id=\"delete-dialog\" class=\"demo-dialog\" aria-labelledby=\"delete-title\" aria-describedby=\"delete-desc\">\n  <div class=\"dialog-head\">\n    <span class=\"dialog-icon\" data-tone=\"error\" aria-hidden=\"true\">…</span>\n    <div><h2 id=\"delete-title\">프로젝트를 삭제할까요?</h2><p id=\"delete-desc\">삭제하면 더빙 결과와 자막이 함께 사라져요.</p></div>\n    <button type=\"button\" class=\"icon-button dialog-close\" aria-label=\"닫기\">×</button>\n  </div>\n  <div class=\"dialog-foot\">\n    <button type=\"button\" class=\"button secondary\" autofocus>취소</button>\n    <button type=\"button\" class=\"button danger\">프로젝트 삭제</button>\n  </div>\n</dialog>\n<!-- showModal()로 열면 초점 가두기와 Esc 닫기가 기본 제공돼요 -->",
       "examples": [
         "/components/dialog"
       ],
