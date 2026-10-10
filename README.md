@@ -2,13 +2,16 @@
 
 Hudson AI 웹 디자인 시스템 문서 사이트의 HTML·CSS·JavaScript 소스입니다.
 
-배포된 사이트: https://hudson-ai-design-system.mcger.chatgpt.site (소유자 전용)
+배포된 사이트: https://hudson-ai-design-system.66everlast99.workers.dev/
+
+개발·배포 설정: [docs/DEVELOPMENT.ko.md](docs/DEVELOPMENT.ko.md)
 
 ## 실행
 
-Node.js 20 이상과 Python 3가 필요합니다. npm 의존성 설치는 필요하지 않습니다.
+Node.js 22 이상과 Python 3가 필요합니다. Wrangler는 잠금 파일에 맞춰 설치합니다.
 
 ```sh
+npm ci
 npm run setup   # Pretendard 다운로드 및 SHA-256 검증. 인터넷 필요.
 npm run build   # 토큰·계약·48개 직접 진입 경로(문서 44 + 허브 4) 생성
 npm start       # http://localhost:8000
