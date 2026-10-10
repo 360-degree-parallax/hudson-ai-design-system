@@ -2,3 +2,15 @@ node_modules/
 .DS_Store
 .openai/
 dist/assets/PretendardVariable.woff2
+# npm run build output (직접 진입 경로)
+dist/404.html
+dist/ai-kit/
+dist/changelog/
+dist/components/
+dist/foundations/
+dist/getting-started/
+dist/guidelines/
+dist/overview/
+dist/patterns/
+dist/principles/
+dist/specification/

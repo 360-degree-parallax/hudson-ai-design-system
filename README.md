@@ -19,6 +19,9 @@ npm start       # http://localhost:8000
 ## 편집할 파일
 
 - `dist/app.js`: 페이지, 디자인 토큰 데이터, 컴포넌트 registry, 작동 예제
+  - `registry`: 컴포넌트 목적·상태·props
+  - `guides`: 컴포넌트별 사용·회피 기준, 대안, 키보드, 토큰 바인딩, 복사용 코드 (registry.json과 위임 프롬프트의 원본)
+  - `briefSchema`·`defaultBrief`: ScreenBrief 스키마 원본 (`screen-brief.schema.json`으로 생성)
 - `dist/style.css`: 반응형 레이아웃과 컴포넌트 스타일
 - `dist/index.html`: 문서 Shell
 - `generate.mjs`: JSON·토큰 CSS·직접 진입 HTML 생성
@@ -40,4 +43,4 @@ npm start       # http://localhost:8000
 npm run check
 ```
 
-생성 시 44개 페이지 렌더 함수와 토큰 참조를 검증합니다. 제작 환경에서 DOM 기반 검색·탭·입력 검증·표 필터·정렬·페이지 이동·비동기 상태·양식 생성을 검사했습니다. 실제 브라우저 화면, 200% 글자 확대, 400% 브라우저 확대, 스크린리더, 실사용 성능은 별도로 검수해야 합니다. 접근성 인증을 주장하지 않습니다.
+생성 시 44개 페이지 렌더 함수와 토큰 참조를 검증합니다. 다음 경우 빌드가 실패합니다: 컴포넌트끼리 useWhen·avoidWhen·tokenBindings·keyboardBehavior가 같음, 알 수 없는 토큰 바인딩, 없는 대안 문서, 코드 예제의 데모 전용 마크업, 기본 ScreenBrief의 스키마 불일치, `style.css`의 HEX. 제작 환경에서 DOM 기반 검색·탭·입력 검증·표 필터·정렬·페이지 이동·비동기 상태·양식 생성을 검사했습니다. 실제 브라우저 화면, 200% 글자 확대, 400% 브라우저 확대, 스크린리더, 실사용 성능은 별도로 검수해야 합니다. 접근성 인증을 주장하지 않습니다.

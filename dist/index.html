@@ -4,18 +4,18 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Hudson AI의 웹을 만드는 명확한 기준. 디자인 토큰, 컴포넌트, 작업 패턴과 AI 구현 명세.">
   <meta name="theme-color" content="#FAF9F6">
-  <title>Typography — Hudson AI Design System</title>
+  <title>Overview — Hudson AI Design System</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23FD4D20'/%3E%3Cpath d='M12 9v22m16-22v22M12 20h16' stroke='%23171614' stroke-width='5'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="/tokens.css"><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">본문으로 이동</a>
   <header class="header">
-    <div class="header-brand"><button class="icon-button menu-trigger" aria-label="탐색 메뉴 열기" id="menuOpen">☰</button><a class="brand" href="/overview" data-route><span class="brand-mark" aria-hidden="true">H</span><span>hudson<span class="brand-ai"> ai</span></span></a><span class="brand-divider"></span><a href="/foundations/typography" data-route class="system-name">Design System <span class="web-label">WEB</span></a></div>
+    <div class="header-brand"><button class="icon-button menu-trigger" aria-label="탐색 메뉴 열기" id="menuOpen">☰</button><a class="brand" href="/overview" data-route><span class="brand-mark" aria-hidden="true">H</span><span>hudson<span class="brand-ai"> ai</span></span></a><span class="brand-divider"></span><a href="/overview" data-route class="system-name">Design System <span class="web-label">WEB</span></a></div>
     <div class="header-actions"><button class="search-trigger" id="searchOpen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m15 15 5 5" stroke="currentColor" stroke-width="1.6"/></svg><span>문서 검색</span><kbd>⌘ K</kbd></button><span class="version">v1.0.0 <span class="status-dot"></span></span><a class="header-link" href="/ai-kit" data-route>AI Kit <span aria-hidden="true">↗</span></a></div>
   </header>
   <div class="site-shell"><nav id="sidebar" class="sidebar" aria-label="주 탐색"></nav><main id="main" tabindex="-1"></main><aside class="toc" id="toc" aria-label="이 페이지 목차"></aside></div>
-  <dialog id="searchDialog" class="search-dialog" aria-labelledby="searchTitle"><form method="dialog" class="search-head"><label class="sr-only" id="searchTitle" for="searchInput">디자인 시스템 검색</label><input id="searchInput" type="search" placeholder="컴포넌트, 토큰, 규칙을 검색하세요" autocomplete="off"><button class="icon-button" aria-label="검색 닫기">×</button></form><div id="searchResults" class="search-results"></div><div class="search-footer">↑ ↓ 결과 이동 <span>Enter 열기 · Esc 닫기</span></div></dialog>
+  <dialog id="searchDialog" class="search-dialog" aria-labelledby="searchTitle"><form method="dialog" class="search-head"><label class="sr-only" id="searchTitle" for="searchInput">디자인 시스템 검색</label><input id="searchInput" type="text" role="combobox" aria-expanded="true" aria-controls="searchResults" aria-autocomplete="list" placeholder="컴포넌트, 토큰, 상태, 규칙 검색" autocomplete="off" spellcheck="false"><button class="icon-button" aria-label="검색 닫기">×</button></form><div id="searchResults" class="search-results"></div><div class="sr-only" id="searchStatus" role="status" aria-live="polite"></div><div class="search-footer"><span><kbd>↑</kbd> <kbd>↓</kbd> 이동</span><span><kbd>Enter</kbd> 열기 · <kbd>Esc</kbd> 닫기</span></div></dialog>
   <dialog id="demoDialog" class="demo-dialog" aria-labelledby="demoDialogTitle"><h2 id="demoDialogTitle">변경 사항을 저장할까요?</h2><p>작업을 계속하기 전에 변경한 내용을 저장할 수 있어요.</p><div class="dialog-actions"><button class="button secondary" data-close-dialog>취소</button><button class="button primary" data-confirm-dialog>변경 저장</button></div></dialog>
   <dialog id="navDialog" class="nav-dialog" aria-label="문서 탐색"><div class="drawer-top"><strong>문서 탐색</strong><button class="icon-button" id="menuClose" aria-label="탐색 메뉴 닫기">×</button></div><nav id="mobileNav" aria-label="모바일 탐색"></nav></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

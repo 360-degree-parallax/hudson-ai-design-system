@@ -84,5 +84,11 @@
   --hds-elevation-1: 0 2px 8px rgb(23 22 20 / .08);
   --hds-elevation-2: 0 8px 24px rgb(23 22 20 / .12);
   --hds-elevation-3: 0 16px 48px rgb(23 22 20 / .18);
+  --hds-status-danger: #B42318;
+  --hds-status-danger-surface: #FFF1F0;
+  --hds-status-success: #17643B;
+  --hds-status-success-surface: #EDF7F0;
+  --hds-status-warning: #805500;
+  --hds-status-warning-surface: #FFF7E0;
 }
 [data-theme="inverse"]{--hds-bg-canvas:var(--hds-color-warm-950);--hds-bg-surface:var(--hds-color-warm-900);--hds-text-primary:var(--hds-color-warm-0);--hds-text-secondary:var(--hds-color-warm-300);--hds-focus-ring:var(--hds-color-warm-0);}
