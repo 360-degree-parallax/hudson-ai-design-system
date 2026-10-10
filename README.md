@@ -21,7 +21,7 @@ npm start       # http://localhost:8000
 
 ## 편집할 파일
 
-- `dist/app.js`: 페이지, 디자인 토큰 데이터, 컴포넌트 registry, 작동 예제
+- `dist/app.js`: 페이지, 디자인 토큰 데이터, 컴포넌트 registry, 작동 예제. 탐색은 `groups`(영역·페이지)와 `subGroups`(하위 분류) 한 곳에서 헤더 메가 메뉴·사이드바·드로어·검색에 생성
 - `dist/style.css`: 반응형 레이아웃과 컴포넌트 스타일
 - `dist/index.html`: 문서 Shell
 - `generate.mjs`: JSON·토큰 CSS·직접 진입 HTML 생성
