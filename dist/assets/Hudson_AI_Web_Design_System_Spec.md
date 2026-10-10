@@ -389,9 +389,40 @@ id, version, status, purpose, useWhen, avoidWhen, props, variants, stateAxes, st
 
 각 prop에는 이름·type·default·required·설명을 기입한다. 토큰 바인딩에는 어떤 상태의 어떤 CSS 속성을 어느 semantic token에 연결하는지 기록한다. allowedComponents와 allowedTokens는 실제 export·토큰 데이터에서 생성하고 모든 예제의 참조 유효성을 빌드에서 확인한다.
 
-### 13.3 그대로 전달할 구현 지시문
+### 13.3 구현 지시문 (그대로 전달)
 
-> Hudson Design System v1.0을 구현하세요. 먼저 저장소의 구조·AGENTS.md·의존성을 확인하고 기존 기술 스택을 유지하세요. 이 명세와 tokens/registry/ScreenBrief를 기준으로 DocsShell, Foundations, Components, Patterns, AI Kit를 구성하세요. 토스 문서의 탐색·설명·예제 구조를 참고하고 Hudson의 #FD4D20·차콜·웜그레이·화이트 토큰을 적용하세요. 모바일 앱의 네이티브 확대 규칙이나 하단 탭바를 기본으로 사용하지 마세요. 모든 컴포넌트는 기존 export와 semantic token에서 선택하세요. 검색·라우팅·복사·상태 전환·키보드 조작을 실제로 작동하게 하세요. 데이터가 없는 예제는 데모라고 표시하세요. 색·간격·곡률·그림자·새 컴포넌트를 임의로 추가하지 마세요. 누락된 요구는 명세의 변경 절차로 해결하고 이유를 기록하세요. 문서와 API를 같은 원본에서 생성하고 구현 후 15절의 수용 기준을 검사하세요. 결과에는 변경 파일·실행 명령·검증 결과·미해결 항목을 기록하세요.
+```text
+[역할]
+Hudson Design System v1.0으로 화면을 구현한다.
+
+[입력]
+- ScreenBrief: purpose, audience, primaryAction, requiredStates, acceptanceCriteria
+- 컴포넌트 계약: allowedComponents의 props, states, keyboardBehavior, tokenBindings
+- tokens.css, registry, 이 명세의 15절 수용 기준
+
+[순서]
+1. 저장소 구조, AGENTS.md, 의존성을 확인하고 기존 기술 스택을 유지한다.
+2. ScreenBrief의 purpose와 primaryAction에 맞는 기존 Pattern을 고른다.
+3. Pattern의 Layout과 allowedComponents만으로 화면을 구성한다.
+4. 모든 색, 간격, radius, 그림자를 semantic token(--hds-*)에 바인딩한다.
+5. requiredStates(ready, 빈 상태, 실패, 로딩 등)를 모두 구현한다.
+6. 검색, 라우팅, 복사, 상태 전환, 키보드 조작을 실제로 동작하게 만든다.
+7. 15절의 수용 기준을 검사한다.
+
+[금지]
+- HEX 값, 임의 간격, 곡률, 그림자, 새 컴포넌트 추가
+- 모바일 네이티브 패턴(하단 탭바, 네이티브 확대 규칙)을 기본 레이아웃으로 사용
+- 데이터가 없는 예제를 실제 데이터처럼 표시 (데모로 표시한다)
+- 누락된 요구를 임의로 해결 (13.4의 7단계 변경 절차로 제안한다)
+
+[중단 조건]
+- ScreenBrief와 컴포넌트 계약이 충돌하거나 필요한 컴포넌트·토큰이 없으면 구현을 멈추고 충돌 항목을 질문한다.
+
+[보고 형식]
+- 변경 파일
+- 실행한 명령과 결과 (빌드, 테스트, 수용 기준별 통과 여부)
+- 미해결 항목과 제안한 변경 절차
+```
 
 ### 13.4 AI의 선택 순서
 
@@ -401,7 +432,7 @@ id, version, status, purpose, useWhen, avoidWhen, props, variants, stateAxes, st
 4. semantic token을 바인딩한다.
 5. 반응형·키보드·비동기·실패·긴 텍스트를 구현한다.
 6. 실제 화면과 계약을 검수한다.
-7. 필요 항목이 없으면 누락을 기록하고 최소 변경안으로 registry에 추가한다.
+7. 필요 항목이 없으면 누락을 기록하고 최소 변경안을 제안한다.
 
 AI가 자유롭게 바꿀 수 있는 것: 실제 제품 데이터에 맞는 문구, 허용된 토큰·variant 선택, 기존 패턴의 조합. 변경 검토가 필요한 것: 새 토큰, public API, 새 패턴, 접근성 동작, 파괴적 액션 정책. 한 화면의 미관을 위해 시스템 전체를 바꾸지 않는다.
 

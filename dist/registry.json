@@ -5,9 +5,9 @@
       "id": "Button",
       "version": "1.0.0",
       "status": "stable",
-      "purpose": "사용자가 명확한 행동을 실행하도록 돕는 버튼입니다.",
-      "useWhen": "저장·생성·삭제처럼 지금 화면에서 무언가를 실행할 때 써요.",
-      "avoidWhen": "다른 페이지로 이동만 한다면 Link를 쓰세요. 한 작업 영역에 primary를 두 개 이상 두지 마세요.",
+      "purpose": "사용자가 행동을 실행하도록 하는 버튼입니다.",
+      "useWhen": "저장, 생성, 삭제처럼 지금 화면에서 작업을 실행할 때 씁니다.",
+      "avoidWhen": "다른 페이지로 이동만 하면 Link를 씁니다. 작업 영역에 primary 버튼은 하나만 둡니다.",
       "alternatives": [
         {
           "id": "Link",
@@ -61,7 +61,7 @@
           "type": "ReactNode / text",
           "default": "필수",
           "required": true,
-          "description": "명확한 행동 라벨"
+          "description": "행동을 설명하는 라벨"
         }
       ],
       "variants": [
@@ -150,8 +150,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "다른 문서나 위치로 이동하는 탐색 요소입니다.",
-      "useWhen": "다른 문서·페이지·외부 사이트로 이동할 때 써요.",
-      "avoidWhen": "저장·삭제 같은 실행에는 쓰지 마세요. button의 onClick으로 이동을 흉내 내지 마세요.",
+      "useWhen": "다른 문서, 페이지, 외부 사이트로 이동할 때 씁니다.",
+      "avoidWhen": "저장이나 삭제 같은 실행에는 쓰지 않습니다. button의 onClick으로 이동을 흉내 내지 않습니다.",
       "alternatives": [
         {
           "id": "Button",
@@ -248,9 +248,9 @@
       "id": "Field",
       "version": "1.0.0",
       "status": "stable",
-      "purpose": "라벨, 입력, 설명과 오류를 하나의 그룹으로 연결합니다.",
-      "useWhen": "라벨·입력·설명·오류를 한 묶음으로 보여줄 때 써요. 모든 입력 컴포넌트를 감싸요.",
-      "avoidWhen": "라벨 없이 placeholder만으로 입력 목적을 설명하지 마세요.",
+      "purpose": "라벨, 입력, 설명, 오류를 한 그룹으로 연결합니다.",
+      "useWhen": "라벨, 입력, 설명, 오류를 한 묶음으로 연결합니다. 모든 입력 컴포넌트를 감쌉니다.",
+      "avoidWhen": "라벨 없이 placeholder만으로 입력 목적을 설명하지 않습니다.",
       "alternatives": [
         {
           "id": "TextInput",
@@ -358,8 +358,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "텍스트를 입력하고 검증하는 웹 입력 필드입니다.",
-      "useWhen": "이름·제목처럼 자유로운 텍스트를 한 줄로 받을 때 써요.",
-      "avoidWhen": "선택지가 정해져 있다면 Select나 Combobox를 쓰세요. 오류가 있다고 disabled로 만들지 마세요.",
+      "useWhen": "이름, 제목처럼 자유로운 텍스트를 한 줄로 받을 때 씁니다.",
+      "avoidWhen": "선택지가 정해져 있으면 Select나 Combobox를 씁니다. 오류가 있다고 disabled로 만들지 않습니다.",
       "alternatives": [
         {
           "id": "Combobox",
@@ -484,9 +484,9 @@
       "id": "Select",
       "version": "1.0.0",
       "status": "stable",
-      "purpose": "짧고 정해진 목록에서 하나의 값을 선택합니다.",
-      "useWhen": "7개 안팎의 짧고 정해진 목록에서 하나를 고를 때 써요.",
-      "avoidWhen": "목록이 길거나 검색이 필요하면 Combobox를 쓰세요. 두세 개뿐이면 Radio가 더 빨라요.",
+      "purpose": "짧고 정해진 목록에서 값 하나를 선택합니다.",
+      "useWhen": "7개 안팎의 짧고 정해진 목록에서 하나를 고를 때 씁니다.",
+      "avoidWhen": "목록이 길거나 검색이 필요하면 Combobox를 씁니다. 두세 개뿐이면 Radio가 더 빠릅니다.",
       "alternatives": [
         {
           "id": "Combobox",
@@ -592,8 +592,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "검색과 선택을 결합해 긴 옵션 목록에서 값을 찾습니다.",
-      "useWhen": "언어 목록처럼 길어서 입력으로 걸러 찾아야 하는 옵션에 써요.",
-      "avoidWhen": "옵션이 몇 개뿐이면 Select가 더 단순해요. 자유 입력이 목적이면 TextInput을 쓰세요.",
+      "useWhen": "언어 목록처럼 길어서 입력으로 걸러 찾아야 하는 옵션에 씁니다.",
+      "avoidWhen": "옵션이 몇 개뿐이면 Select가 더 단순합니다. 자유 입력이 목적이면 TextInput을 씁니다.",
       "alternatives": [
         {
           "id": "Select",
@@ -713,8 +713,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "서로 독립적인 선택을 켜거나 끕니다.",
-      "useWhen": "서로 독립적인 여러 선택을 켜고 끄거나, 동의 하나를 받을 때 써요.",
-      "avoidWhen": "즉시 적용되는 설정은 Switch, 하나만 골라야 하면 Radio를 쓰세요.",
+      "useWhen": "서로 독립적인 여러 항목을 켜고 끄거나, 동의 항목 하나를 받을 때 씁니다.",
+      "avoidWhen": "즉시 적용되는 설정은 Switch를, 하나만 골라야 하면 Radio를 씁니다.",
       "alternatives": [
         {
           "id": "Switch",
@@ -817,8 +817,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "서로 배타적인 옵션 중 하나를 선택합니다.",
-      "useWhen": "2~5개의 서로 배타적인 옵션을 한눈에 비교하고 하나를 고를 때 써요.",
-      "avoidWhen": "옵션이 많으면 Select, 여러 개를 고를 수 있으면 Checkbox를 쓰세요.",
+      "useWhen": "2~5개의 배타적 옵션을 한눈에 비교하고 하나를 고를 때 씁니다.",
+      "avoidWhen": "옵션이 많으면 Select를, 여러 개를 고를 수 있으면 Checkbox를 씁니다.",
       "alternatives": [
         {
           "id": "Select",
@@ -923,8 +923,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "즉시 적용되는 이진 설정을 변경합니다.",
-      "useWhen": "저장 버튼 없이 바로 적용되는 켜기·끄기 설정에 써요.",
-      "avoidWhen": "폼을 제출해야 적용되는 값은 Checkbox를 쓰세요.",
+      "useWhen": "저장 버튼 없이 바로 적용되는 켜기·끄기 설정에 씁니다.",
+      "avoidWhen": "폼을 제출해야 적용되는 값은 Checkbox를 씁니다.",
       "alternatives": [
         {
           "id": "Checkbox",
@@ -1020,8 +1020,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "같은 맥락의 콘텐츠를 영역별로 나누어 탐색합니다.",
-      "useWhen": "같은 맥락의 콘텐츠를 2~6개 영역으로 나눠 번갈아 볼 때 써요.",
-      "avoidWhen": "순서가 있는 단계나 다른 페이지로의 이동에는 쓰지 마세요.",
+      "useWhen": "같은 맥락의 콘텐츠를 2~6개 영역으로 나눠 번갈아 볼 때 씁니다.",
+      "avoidWhen": "순서가 있는 단계나 다른 페이지로의 이동에는 쓰지 않습니다.",
       "alternatives": [
         {
           "id": "Link",
@@ -1124,8 +1124,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "짧은 상태나 분류를 텍스트와 함께 표시합니다.",
-      "useWhen": "상태나 분류를 짧은 텍스트로 붙일 때 써요.",
-      "avoidWhen": "누를 수 있는 요소처럼 보이게 쓰지 마세요. 색만으로 상태를 전달하지 마세요.",
+      "useWhen": "상태나 분류를 짧은 텍스트로 붙일 때 씁니다.",
+      "avoidWhen": "누를 수 있는 요소처럼 보이게 쓰지 않습니다. 색만으로 상태를 전달하지 않습니다.",
       "alternatives": [
         {
           "id": "Alert",
@@ -1222,8 +1222,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "사용자의 다음 행동에 영향을 주는 메시지를 지속적으로 보여줍니다.",
-      "useWhen": "사용자의 다음 행동에 영향을 주는 메시지를 본문에 계속 남길 때 써요.",
-      "avoidWhen": "놓쳐도 되는 짧은 확인은 Toast로, 진행 전에 결정이 필요하면 Dialog로 받으세요.",
+      "useWhen": "사용자의 다음 행동에 영향을 주는 메시지를 본문에 계속 남길 때 씁니다.",
+      "avoidWhen": "놓쳐도 되는 짧은 확인은 Toast로, 진행 전에 결정이 필요하면 Dialog로 받습니다.",
       "alternatives": [
         {
           "id": "Toast",
@@ -1333,8 +1333,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "작업의 보조 결과를 짧게 알립니다. 중요한 오류는 본문에 남깁니다.",
-      "useWhen": "저장 완료처럼 놓쳐도 되는 보조 결과를 짧게 알릴 때 써요.",
-      "avoidWhen": "실패나 되돌릴 수 없는 결과는 Alert로 본문에 남기세요. 버튼을 넣지 마세요.",
+      "useWhen": "저장 완료처럼 놓쳐도 되는 보조 결과를 짧게 알릴 때 씁니다.",
+      "avoidWhen": "실패나 되돌릴 수 없는 결과는 Alert로 본문에 남깁니다. 버튼을 넣지 않습니다.",
       "alternatives": [
         {
           "id": "Alert",
@@ -1428,8 +1428,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "핵심 작업을 막지 않는 간단한 보조 설명을 제공합니다.",
-      "useWhen": "아이콘 버튼의 이름처럼 핵심 작업을 막지 않는 짧은 보조 설명에 써요.",
-      "avoidWhen": "꼭 읽어야 하는 정보나 링크·버튼은 넣지 마세요. 터치 환경에선 보이지 않을 수 있어요.",
+      "useWhen": "아이콘 버튼의 이름처럼 핵심 작업을 막지 않는 짧은 보조 설명에 씁니다.",
+      "avoidWhen": "꼭 읽어야 하는 정보, 링크, 버튼은 넣지 않습니다. 터치 환경에서는 보이지 않을 수 있습니다.",
       "alternatives": [
         {
           "id": "Field",
@@ -1526,8 +1526,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "중요한 결정이나 집중된 작업을 별도 레이어에서 처리합니다.",
-      "useWhen": "삭제 확인처럼 진행 전에 결정이 필요하거나, 짧고 집중된 작업이 필요할 때 써요.",
-      "avoidWhen": "결정이 필요 없는 안내는 Alert, 맥락을 유지한 채 보는 보조 정보는 Drawer를 쓰세요.",
+      "useWhen": "삭제 확인처럼 진행 전에 결정이 필요하거나, 짧고 집중된 작업이 필요할 때 씁니다.",
+      "avoidWhen": "결정이 필요 없는 안내는 Alert로, 맥락을 유지한 채 보는 보조 정보는 Drawer로 씁니다.",
       "alternatives": [
         {
           "id": "Drawer",
@@ -1645,8 +1645,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "현재 맥락을 유지하며 보조 탐색과 상세 설정을 보여줍니다.",
-      "useWhen": "현재 화면을 유지한 채 탐색 메뉴나 상세 설정을 옆에서 열 때 써요.",
-      "avoidWhen": "되돌릴 수 없는 결정은 Dialog로 받으세요. 넓은 화면에서 늘 필요한 탐색은 고정 사이드바로 두세요.",
+      "useWhen": "현재 화면을 유지한 채 탐색 메뉴나 상세 설정을 옆에서 열 때 씁니다.",
+      "avoidWhen": "되돌릴 수 없는 결정은 Dialog로 받습니다. 넓은 화면에서 항상 필요한 탐색은 고정 사이드바로 둡니다.",
       "alternatives": [
         {
           "id": "Dialog",
@@ -1750,8 +1750,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "비교 가능한 데이터를 열과 행으로 표시하고 정렬·선택합니다.",
-      "useWhen": "여러 항목을 같은 기준으로 비교·정렬·선택해야 할 때 써요.",
-      "avoidWhen": "비교할 열이 없는 단순 목록이나 레이아웃 용도로 쓰지 마세요.",
+      "useWhen": "여러 항목을 같은 기준으로 비교, 정렬, 선택해야 할 때 씁니다.",
+      "avoidWhen": "비교할 열이 없는 단순 목록이나 레이아웃 용도로 쓰지 않습니다.",
       "alternatives": [
         {
           "id": "Pagination",
@@ -1871,8 +1871,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "한 번에 보여주는 데이터 범위를 예측 가능하게 이동합니다.",
-      "useWhen": "데이터를 페이지 단위로 나눠 보여주고 범위를 예측 가능하게 이동할 때 써요.",
-      "avoidWhen": "피드처럼 계속 이어 보는 콘텐츠에는 쓰지 마세요.",
+      "useWhen": "데이터를 페이지 단위로 나눠 보여주고 범위를 예측 가능하게 이동할 때 씁니다.",
+      "avoidWhen": "피드처럼 계속 이어 보는 콘텐츠에는 쓰지 않습니다.",
       "alternatives": [
         {
           "id": "Table",
@@ -1973,8 +1973,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "콘텐츠가 로드될 위치를 미리 보여줍니다.",
-      "useWhen": "로딩이 1초 이상 걸리고 결과 레이아웃을 미리 알 때 써요.",
-      "avoidWhen": "진행률을 알 수 있는 작업은 Progress를 쓰세요. 아주 짧은 로딩에는 아무것도 보여주지 않는 편이 나아요.",
+      "useWhen": "로딩이 1초 이상 걸리고 결과 레이아웃을 미리 알 때 씁니다.",
+      "avoidWhen": "진행률을 알 수 있는 작업은 Progress를 씁니다. 아주 짧은 로딩에는 아무것도 보여주지 않는 편이 낫습니다.",
       "alternatives": [
         {
           "id": "Progress",
@@ -2038,7 +2038,7 @@
       "keyboardBehavior": [
         {
           "key": "—",
-          "action": "상호작용 없음. aria-busy로 상태를 전달해요"
+          "action": "상호작용 없음. aria-busy로 상태를 전달합니다."
         }
       ],
       "accessibility": [
@@ -2065,8 +2065,8 @@
       "version": "1.0.0",
       "status": "stable",
       "purpose": "알려진 완료율 또는 현재 작업 진행 여부를 보여줍니다.",
-      "useWhen": "업로드·번역처럼 진행률이나 진행 중 여부를 알려야 할 때 써요.",
-      "avoidWhen": "백엔드가 완료율을 주지 않으면 숫자를 만들지 말고 value 없는 indeterminate로 쓰세요.",
+      "useWhen": "업로드, 번역처럼 진행률이나 진행 중 여부를 알려야 할 때 씁니다.",
+      "avoidWhen": "백엔드가 완료율을 주지 않으면 숫자를 만들지 말고 value 없는 indeterminate로 씁니다.",
       "alternatives": [
         {
           "id": "Skeleton",
@@ -2137,7 +2137,7 @@
       "keyboardBehavior": [
         {
           "key": "—",
-          "action": "값 변화는 상태 텍스트로 전달해요"
+          "action": "값 변화는 상태 텍스트로 전달합니다."
         }
       ],
       "accessibility": [
