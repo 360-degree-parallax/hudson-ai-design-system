@@ -8,7 +8,7 @@
 
 비개발자는 1~4절로 방향을 결정하고, 디자이너는 5~10절로 화면을 설계하고, 개발자·AI는 11~16절로 구현한다. 값과 컴포넌트가 없는 경우 임의로 추가하지 말고 14절의 변경 절차를 따른다. 출시 전 15절의 수용 기준을 통과해야 한다.
 
-현재 확정한 범위는 반응형 웹이다. iOS·Android 전용 API, 네이티브 폰트 확대 매핑, 모바일 앱의 하단 탭바를 기본 구조로 사용하지 않는다. 모바일 브라우저는 같은 웹의 좁은 화면 조건으로 지원한다. 기본 테마는 라이트, 차콜 미디어 작업 영역은 별도 inverse scope로 제공한다. 전체 다크 테마는 후속 범위다.
+현재 확정한 범위는 반응형 웹이다. iOS·Android 전용 API, 네이티브 폰트 확대 매핑, 모바일 앱의 하단 탭바를 기본 구조로 사용하지 않는다. 모바일 브라우저는 같은 웹의 좁은 화면 조건으로 지원한다. 기본 테마는 시스템 설정을 따르는 라이트·다크이며 헤더에서 전환한다(`?theme=dark`로도 연다). 차콜 미디어 작업 영역은 별도 inverse scope로 제공한다. 문서 언어는 한국어와 English이며 헤더 또는 `?lang=en`으로 전환한다.
 
 ## 1. 기획 의도
 
@@ -90,7 +90,7 @@ Typography 페이지에는 한글/영문/혼합 예문, 역할별 크기·행간
 
 ### 5.1 Primitive
 
-오렌지 램프는 #FD4D20(500)을 고정하고, 어두운 단계(600–900)는 OKLCH 색상각을 웜그레이 쪽(35°→50°)으로, 밝은 단계(50–400)는 피치 쪽으로 돌린다. 같은 색상각으로 명도만 낮추면 벽돌색·빨강으로 읽혀 웜그레이와 어울리지 않기 때문이다. 오류 빨강은 크림슨 쪽(약 18°)에 두어 브랜드 오렌지와 12° 이상 떨어뜨린다. 빌드는 이 색상각 규칙과 대비 쌍을 검사한다.
+오렌지 램프는 #FD4D20(500)을 고정하고, 어두운 단계(600–900)는 OKLCH 색상각을 웜그레이 쪽(35°→50°)으로, 밝은 단계(50–400)는 피치 쪽으로 돌린다. 같은 색상각으로 명도만 낮추면 벽돌색·빨강으로 읽혀 웜그레이와 어울리지 않기 때문이다. 성공·주의·오류 상태색도 이 팔레트(오렌지·차콜·웜그레이·화이트)에서만 가져오며, 초록·노랑·빨강 등 팔레트 밖의 색은 어떤 곳에도 쓰지 않는다. 빌드는 이 색상각 규칙, 상태색의 팔레트 한정, 라이트·다크 대비 쌍을 검사한다.
 
 | 토큰 | 값 | 사용 |
 |---|---|---|
@@ -111,34 +111,44 @@ Typography 페이지에는 한글/영문/혼합 예문, 역할별 크기·행간
 | warm-300 | #D2CCC3 | 비활성 테두리 |
 | warm-500 | #78716C | 제한된 보조 텍스트 |
 | warm-600 | #625B54 | 기본 secondary text |
-| warm-700 | #4A443E | inverse 위의 경계·중립 강도 |
-| warm-900 | #282521 | inverse surface |
+| warm-700 | #4A443E | inverse·다크 위의 경계, 중립 강도 |
+| warm-800 | #35312C | 다크 inset surface (다크 모드용으로 추가) |
+| warm-900 | #282521 | inverse·다크 surface |
 | warm-950 | #171614 | 주요 텍스트·차콜 |
 
 ### 5.2 Semantic
 
-| 의미 토큰 | 라이트 값 | inverse scope 값 |
+| 의미 토큰 | 라이트 값 | 다크 값 |
 |---|---|---|
 | bg.canvas | warm-50 | warm-950 |
 | bg.surface | warm-0 | warm-900 |
-| bg.subtle | warm-100 | warm-700 |
-| text.primary | warm-950 | warm-0 |
+| bg.subtle | warm-100 | warm-800 |
+| bg.inverse | warm-950 | warm-100 |
+| text.primary | warm-950 | warm-50 |
 | text.secondary | warm-600 | warm-300 |
 | text.muted | warm-600 | warm-300 |
-| text.brand | orange-700 | orange-500 |
+| text.inverse | warm-0 | warm-950 |
+| text.brand | orange-700 | orange-400 |
 | border.subtle | warm-200 | warm-700 |
-| border.control | warm-500 | warm-300 |
+| border.control | warm-500 | warm-500 |
+| field.bg | warm-100 | warm-800 |
+| field.border | warm-200 | warm-700 |
+| field.border.hover | warm-300 | warm-600 |
 | action.primary.bg | orange-500 | orange-500 |
-| action.primary.hover | orange-600 | orange-600 |
-| action.primary.pressed | orange-700 | orange-700 |
+| action.primary.hover | orange-600 | orange-400 |
+| action.primary.pressed | orange-700 | orange-300 |
 | action.primary.fg | warm-950 | warm-950 |
-| action.selected.bg | orange-100 | warm-700 |
-| action.selected.fg | orange-700 | warm-0 |
-| focus.ring | warm-950 | warm-0 |
+| action.primary.pressed.fg | warm-0 | warm-950 |
+| action.selected.bg | orange-100 | orange-900 |
+| action.selected.fg | orange-700 | orange-300 |
+| focus.ring | warm-950 | warm-50 |
+| status.success | warm-950 (면 warm-0, 경계 warm-700) | warm-50 (면 warm-900, 경계 warm-300) |
+| status.warning | orange-800 (면 orange-50, 경계 orange-200) | orange-300 (면 orange-900, 경계 orange-700) |
+| status.danger | orange-700 (면 orange-100, 경계 orange-500) | orange-400 (면 orange-900, 경계 orange-500) |
 
 화면 면적 기준 사용 비율은 바탕(warm-0·50) 60%, 구조(warm-100–600) 25%, 차콜(warm-900·950) 12%, 포인트(orange) 3%로 시작한다. 오렌지는 화면당 주요 행동 하나와 선택 상태에만 쓴다. 이 비율은 tokens.json의 colorRatio에 기록한다.
 
-색은 primitive → semantic → component의 3단계로 참조한다. 화면 파일에서 HEX를 직접 사용하지 않는다. 실시간 상태·오류는 브랜드 컬러로 통합하지 않는다. 최소한의 상태색으로 danger #B61D3A / surface #FEEFF0, success #17643B / surface #EDF7F0, warning #805500 / surface #FFF7E0를 별도 정의한다. inverse에서는 더 밝은 foreground와 어두운 surface의 조합을 추가하고 실제 대비 테스트 후 활성화한다. 상태는 항상 텍스트·아이콘과 함께 보여준다.
+색은 primitive → semantic → component의 3단계로 참조한다. 화면 파일에서 HEX를 직접 사용하지 않는다. 상태색(status.success·warning·danger)은 위 표처럼 오렌지·차콜·웜그레이 토큰만 참조한다. 서로 구분하는 수단은 색상환이 아니라 아이콘 모양, 글자, 채움 강도다(성공은 차콜, 주의는 연한 오렌지 면과 윤곽, 오류는 진한 오렌지 면 또는 채움). 상태는 항상 텍스트·아이콘과 함께 보여준다. 텍스트 입력 필드는 field.bg(연한 웜그레이)와 field.border(연한 경계)를 쓰며 포커스 링은 차콜로 유지한다. 다크 모드는 [data-theme="dark"]에서 의미 토큰을 다시 연결하며 라이트·다크 모두 같은 대비 쌍(일반 텍스트 4.5:1)을 빌드에서 검사한다.
 
 ### 5.3 대비와 금지 조합
 
@@ -211,7 +221,7 @@ disabled는 HTML disabled로 동작을 차단한다. 비활성 이유를 hover t
 
 폼은 blur 또는 제출 시 검증하고 이후에는 입력에 따라 오류를 해소한다. 제출 실패 시 오류 요약과 첫 잘못된 필드로의 이동 경로를 제공한다. placeholder는 label을 대체하지 않는다. readOnly와 disabled를 시각·동작상 구분한다.
 
-Tooltip은 설명용이며 필수 정보나 인터랙티브 콘텐츠를 담지 않는다. 클릭·키보드로 조작해야 하는 내용은 Popover로 분리한다. Toast는 보조 확인에 사용하고 중요한 실패는 본문 Alert로 남긴다. 메뉴와 dialog의 초점·Esc·중첩 동작은 접근성 primitive의 검증된 패턴을 사용한다. 컴포넌트 톤 체계: Badge·Alert·Toast·Dialog 아이콘은 neutral·success·warning·error 네 톤을 쓰고 면(status surface)·테두리(accent 22% 혼합)·아이콘/점(accent)·글자(fg) 네 단계로만 조합한다. 새 토큰은 만들지 않고 기존 status·warm 토큰을 파생한다. Toast·Tooltip은 inverse 면(warm-950/warm-0)을 쓰고 Toast의 톤은 아이콘 칩에만 적용한다. Dialog는 머리(아이콘·제목·설명·닫기)·본문·바닥(canvas 면, 취소 → 주요 행동) 구조이며 삭제처럼 되돌릴 수 없는 행동은 error 톤과 danger 버튼을 쓰고 초점은 취소에 둔다. 체크박스·라디오·스위치·진행률·선택 탭은 선택 상태에만 #FD4D20을 쓴다.
+Tooltip은 설명용이며 필수 정보나 인터랙티브 콘텐츠를 담지 않는다. 클릭·키보드로 조작해야 하는 내용은 Popover로 분리한다. Toast는 보조 확인에 사용하고 중요한 실패는 본문 Alert로 남긴다. 메뉴와 dialog의 초점·Esc·중첩 동작은 접근성 primitive의 검증된 패턴을 사용한다. 컴포넌트 톤 체계: Badge·Alert·Toast·Dialog 아이콘은 neutral·success·warning·error 네 톤을 쓰고 면(status surface)·테두리(status border)·아이콘/점·글자 단계로 조합한다. 모든 색은 오렌지·차콜·웜그레이·화이트 팔레트 안에서 고르며, 성공 배지는 차콜 채움, 오류 배지는 오렌지 채움, 주의 배지는 연한 오렌지 윤곽이다. Toast·Tooltip은 bg.inverse·text.inverse를 쓰므로 다크 모드에서는 밝은 면으로 뒤집힌다. Dialog는 머리(아이콘·제목·설명·닫기)·본문·바닥(canvas 면, 취소 → 주요 행동) 구조이며 삭제처럼 되돌릴 수 없는 행동은 error 톤 아이콘과 차콜(다크에서는 흰) 버튼을 쓰고 초점은 취소에 둔다. 체크박스·라디오·스위치·진행률·선택 탭은 선택 상태에만 #FD4D20을 쓴다.
 
 ### 8.2 Button API 예시
 

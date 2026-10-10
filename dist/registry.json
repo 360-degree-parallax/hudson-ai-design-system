@@ -110,7 +110,8 @@
         "primary.background": "action.primary.bg",
         "primary.color": "action.primary.fg",
         "secondary.border": "border.control",
-        "danger.background": "status.danger",
+        "danger.background": "text.primary",
+        "danger.color": "bg.surface",
         "focus.outline": "focus.ring"
       },
       "keyboardBehavior": [
@@ -440,9 +441,10 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "background": "bg.surface",
-        "border": "border.control",
-        "invalid.border": "status.danger",
+        "background": "field.bg",
+        "border": "field.border",
+        "hover.border": "field.border.hover",
+        "invalid.border": "status.danger.border",
         "focus.outline": "focus.ring"
       },
       "keyboardBehavior": [
@@ -549,8 +551,8 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "background": "bg.surface",
-        "border": "border.control",
+        "background": "field.bg",
+        "border": "field.border",
         "focus.outline": "focus.ring",
         "value.color": "text.primary"
       },
@@ -665,7 +667,8 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "border": "border.control",
+        "background": "field.bg",
+        "border": "field.border",
         "option.active.background": "action.selected.bg",
         "option.active.color": "action.selected.fg"
       },
@@ -777,7 +780,8 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "checked.accent": "text.primary",
+        "checked.background": "action.primary.bg",
+        "checked.mark": "action.primary.fg",
         "border": "border.control",
         "focus.outline": "focus.ring"
       },
@@ -1000,7 +1004,7 @@
       "events": [
         "change"
       ],
-      "code": "<button type=\"button\" class=\"button secondary\" role=\"switch\" aria-checked=\"false\">\n  자동 저장\n</button>\n<!-- 상태가 바뀌면 aria-checked와 보이는 텍스트를 함께 갱신해요 -->",
+      "code": "<button type=\"button\" class=\"switch\" role=\"switch\" aria-checked=\"false\">\n  <span class=\"switch-track\" aria-hidden=\"true\"></span>\n  <span>자동 저장 · 꺼짐</span>\n</button>\n<!-- 상태가 바뀌면 aria-checked와 보이는 텍스트를 함께 갱신해요 -->",
       "examples": [
         "/components/switch"
       ],
@@ -1182,9 +1186,10 @@
       ],
       "tokenBindings": {
         "neutral.background": "bg.subtle",
-        "success.color": "status.success",
+        "success.background": "bg.inverse",
         "warning.color": "status.warning",
-        "danger.color": "status.danger"
+        "warning.background": "status.warning.surface",
+        "danger.background": "action.primary.bg"
       },
       "keyboardBehavior": [
         {
@@ -1200,7 +1205,7 @@
       "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
       "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
       "events": [],
-      "code": "<span class=\"badge\">대기</span>\n<span class=\"badge success\">✓ 완료</span>\n<span class=\"badge warning\">! 검토 필요</span>\n<span class=\"badge danger\">× 실패</span>",
+      "code": "<span class=\"badge\">대기</span>\n<span class=\"badge success\">완료</span>\n<span class=\"badge warning\">검토 필요</span>\n<span class=\"badge danger\">실패</span>",
       "examples": [
         "/components/badge"
       ],
@@ -1290,7 +1295,10 @@
       ],
       "tokenBindings": {
         "info.background": "bg.subtle",
+        "warning.background": "status.warning.surface",
+        "warning.border": "status.warning.border",
         "error.background": "status.danger.surface",
+        "error.border": "status.danger.border",
         "error.color": "status.danger"
       },
       "keyboardBehavior": [
@@ -1384,8 +1392,8 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "background": "inverse.bg.surface",
-        "color": "inverse.text.primary"
+        "background": "bg.inverse",
+        "color": "text.inverse"
       },
       "keyboardBehavior": [
         {
@@ -1477,8 +1485,8 @@
         "interaction + focus-visible"
       ],
       "tokenBindings": {
-        "background": "inverse.bg.surface",
-        "color": "inverse.text.primary",
+        "background": "bg.inverse",
+        "color": "text.inverse",
         "radius": "radius.code"
       },
       "keyboardBehavior": [
