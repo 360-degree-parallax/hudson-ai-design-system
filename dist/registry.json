@@ -1,0 +1,1610 @@
+{
+  "version": "1.0.0",
+  "components": [
+    {
+      "id": "Button",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "사용자가 명확한 행동을 실행하도록 돕는 버튼입니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "variant",
+          "type": "enum",
+          "default": "primary",
+          "description": "시각적 행동 우선순위"
+        },
+        {
+          "name": "size",
+          "type": "sm | md | lg",
+          "default": "md",
+          "description": "보조·일반·주요 액션 크기"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "중복 실행을 차단하고 라벨 유지"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "실행 불가 상태"
+        },
+        {
+          "name": "type",
+          "type": "button | submit | reset",
+          "default": "button",
+          "description": "HTML 동작"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode / text",
+          "default": "필수",
+          "description": "명확한 행동 라벨"
+        }
+      ],
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/button"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Link",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "다른 문서나 위치로 이동하는 탐색 요소입니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "href",
+          "type": "string",
+          "default": "필수",
+          "description": "실제 목적지 URL"
+        },
+        {
+          "name": "external",
+          "type": "boolean",
+          "default": "false",
+          "description": "외부 링크 표시"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/link"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Field",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "라벨, 입력, 설명과 오류를 하나의 그룹으로 연결합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "입력 목적"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "—",
+          "description": "보조 정보"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "default": "—",
+          "description": "수정 가능한 오류"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/field"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "TextInput",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "텍스트를 입력하고 검증하는 웹 입력 필드입니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "default": "—",
+          "description": "입력값"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "보이는 라벨"
+        },
+        {
+          "name": "invalid",
+          "type": "boolean",
+          "default": "false",
+          "description": "오류 상태"
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "default": "false",
+          "description": "값 확인·복사만 허용"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/textinput"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Select",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "짧고 정해진 목록에서 하나의 값을 선택합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "options",
+          "type": "Option[]",
+          "default": "필수",
+          "description": "선택 가능한 값"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "—",
+          "description": "현재 선택값"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/select"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Combobox",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "검색과 선택을 결합해 긴 옵션 목록에서 값을 찾습니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "options",
+          "type": "Option[]",
+          "default": "필수",
+          "description": "옵션 목록"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "default": "—",
+          "description": "검색어"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "목록 로딩"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/combobox"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Checkbox",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "서로 독립적인 선택을 켜거나 끕니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "false",
+          "description": "선택 여부"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "선택 내용"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/checkbox"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Radio",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "서로 배타적인 옵션 중 하나를 선택합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "default": "필수",
+          "description": "동일 그룹"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "필수",
+          "description": "옵션 값"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/radio"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Switch",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "즉시 적용되는 이진 설정을 변경합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "false",
+          "description": "설정 상태"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "설정 이름"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/switch"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Tabs",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "같은 맥락의 콘텐츠를 영역별로 나누어 탐색합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "items",
+          "type": "Tab[]",
+          "default": "필수",
+          "description": "라벨과 panel"
+        },
+        {
+          "name": "selectedId",
+          "type": "string",
+          "default": "필수",
+          "description": "활성 탭"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/tabs"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Badge",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "짧은 상태나 분류를 텍스트와 함께 표시합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "tone",
+          "type": "enum",
+          "default": "neutral",
+          "description": "의미 색상"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "상태 텍스트"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/badge"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Alert",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "사용자의 다음 행동에 영향을 주는 메시지를 지속적으로 보여줍니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "tone",
+          "type": "enum",
+          "default": "info",
+          "description": "상태 의미"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "필수",
+          "description": "메시지 요약"
+        },
+        {
+          "name": "action",
+          "type": "Action",
+          "default": "—",
+          "description": "복구 행동"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/alert"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Toast",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "작업의 보조 결과를 짧게 알립니다. 중요한 오류는 본문에 남깁니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "message",
+          "type": "string",
+          "default": "필수",
+          "description": "결과 안내"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": "4000",
+          "description": "표시 시간 ms"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/toast"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Tooltip",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "핵심 작업을 막지 않는 간단한 보조 설명을 제공합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "content",
+          "type": "string",
+          "default": "필수",
+          "description": "비인터랙티브 설명"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/tooltip"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Dialog",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "중요한 결정이나 집중된 작업을 별도 레이어에서 처리합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "default": "false",
+          "description": "표시 여부"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "필수",
+          "description": "접근 가능한 이름"
+        },
+        {
+          "name": "onClose",
+          "type": "function",
+          "default": "필수",
+          "description": "닫기와 초점 복귀"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/dialog"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Drawer",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "현재 맥락을 유지하며 보조 탐색과 상세 설정을 보여줍니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "side",
+          "type": "start | end",
+          "default": "end",
+          "description": "logical 방향"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "필수",
+          "description": "접근 가능한 이름"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/drawer"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Table",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "비교 가능한 데이터를 열과 행으로 표시하고 정렬·선택합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "columns",
+          "type": "Column[]",
+          "default": "필수",
+          "description": "열 의미"
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "default": "필수",
+          "description": "데이터"
+        },
+        {
+          "name": "density",
+          "type": "comfortable | compact",
+          "default": "comfortable",
+          "description": "행 간격"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/table"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Pagination",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "한 번에 보여주는 데이터 범위를 예측 가능하게 이동합니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "page",
+          "type": "number",
+          "default": "1",
+          "description": "현재 페이지"
+        },
+        {
+          "name": "totalPages",
+          "type": "number",
+          "default": "필수",
+          "description": "전체 페이지"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/pagination"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Skeleton",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "콘텐츠가 로드될 위치를 미리 보여줍니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "lines",
+          "type": "number",
+          "default": "3",
+          "description": "시각적 자리"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "로딩 중",
+          "description": "접근 가능한 상태"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/skeleton"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    },
+    {
+      "id": "Progress",
+      "version": "1.0.0",
+      "status": "stable",
+      "purpose": "알려진 완료율 또는 현재 작업 진행 여부를 보여줍니다.",
+      "useWhen": "화면의 목적과 필요한 상태가 이 계약에 부합할 때",
+      "avoidWhen": "기존 패턴으로 의미와 동작을 표현할 수 없을 때",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "default": "—",
+          "description": "실제 완료율, 미확정 시 생략"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "필수",
+          "description": "작업 단계"
+        }
+      ],
+      "variants": [],
+      "stateAxes": {
+        "interaction": [
+          "default",
+          "hover",
+          "pressed",
+          "focus-visible"
+        ],
+        "availability": [
+          "enabled",
+          "disabled"
+        ],
+        "async": [
+          "idle",
+          "loading",
+          "success",
+          "error"
+        ],
+        "selection": [
+          "unselected",
+          "selected"
+        ]
+      },
+      "statePrecedence": [
+        "disabled",
+        "loading",
+        "invalid/selected",
+        "interaction + focus-visible"
+      ],
+      "tokenBindings": {
+        "background": "bg.surface",
+        "text": "text.primary",
+        "primaryAction": "action.primary.bg"
+      },
+      "keyboardBehavior": "Tab으로 접근, native 요소 또는 WAI-ARIA 패턴의 키보드 계약 준수",
+      "accessibility": [
+        "visible-focus",
+        "accessible-name",
+        "contrast-aa"
+      ],
+      "responsiveBehavior": "docs-default; 360px~1920px; 200% 글자·400% 브라우저 확대 검수",
+      "i18nBehavior": "외부 문자열 주입, 한영 혼합, 긴 텍스트 50% 확장",
+      "events": [
+        "change",
+        "activate"
+      ],
+      "examples": [
+        "/components/progress"
+      ],
+      "acceptanceCriteria": [
+        "keyboard-complete",
+        "no-page-overflow",
+        "no-duplicate-action"
+      ],
+      "deprecatedReplacement": null
+    }
+  ]
+}
