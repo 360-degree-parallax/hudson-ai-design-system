@@ -35,7 +35,7 @@ fs.writeFileSync(path.join(dist,'registry.json'),JSON.stringify({version:'1.0.0'
 const schema=a.briefSchema;
 fs.writeFileSync(path.join(dist,'screen-brief.schema.json'),JSON.stringify(schema,null,2));
 const index=fs.readFileSync(path.join(dist,'index.html'),'utf8');
-for(const p of [...a.pages,...a.hubs.map(h=>({path:h.path,title:h.label}))]){const dir=path.join(dist,p.path);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),index.replace('<title>Overview — Hudson AI Design System</title>',`<title>${p.title} — Hudson AI Design System</title>`));}
+for(const p of [...a.pages,...a.hubs.map(h=>({path:h.path,title:h.label}))]){const dir=path.join(dist,p.path);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),index.replace('<title>Overview — Hudson Design System</title>',`<title>${p.title} — Hudson Design System</title>`));}
 fs.writeFileSync(path.join(dist,'404.html'),index);
 a.setSpecs(JSON.parse(fs.readFileSync(path.join(dist,'spec.json'),'utf8')));
 const out=[];

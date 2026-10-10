@@ -1,4 +1,4 @@
-# Hudson AI Web Design System
+# Hudson Design System
 
 Hudson AI 웹 디자인 시스템 문서 사이트의 HTML·CSS·JavaScript 소스입니다.
 
