@@ -1,4 +1,4 @@
-# Hudson AI Web Design System
+# Hudson Design System
 
 웹 디자인 시스템 문서 사이트 기획·구현·AI 위임 명세 v1.0 · 2026-10-10
 
@@ -391,7 +391,7 @@ id, version, status, purpose, useWhen, avoidWhen, props, variants, stateAxes, st
 
 ### 13.3 그대로 전달할 구현 지시문
 
-> Hudson AI Web Design System v1.0을 구현하세요. 먼저 저장소의 구조·AGENTS.md·의존성을 확인하고 기존 기술 스택을 유지하세요. 이 명세와 tokens/registry/ScreenBrief를 기준으로 DocsShell, Foundations, Components, Patterns, AI Kit를 구성하세요. 토스 문서의 탐색·설명·예제 구조를 참고하고 Hudson의 #FD4D20·차콜·웜그레이·화이트 토큰을 적용하세요. 모바일 앱의 네이티브 확대 규칙이나 하단 탭바를 기본으로 사용하지 마세요. 모든 컴포넌트는 기존 export와 semantic token에서 선택하세요. 검색·라우팅·복사·상태 전환·키보드 조작을 실제로 작동하게 하세요. 데이터가 없는 예제는 데모라고 표시하세요. 색·간격·곡률·그림자·새 컴포넌트를 임의로 추가하지 마세요. 누락된 요구는 명세의 변경 절차로 해결하고 이유를 기록하세요. 문서와 API를 같은 원본에서 생성하고 구현 후 15절의 수용 기준을 검사하세요. 결과에는 변경 파일·실행 명령·검증 결과·미해결 항목을 기록하세요.
+> Hudson Design System v1.0을 구현하세요. 먼저 저장소의 구조·AGENTS.md·의존성을 확인하고 기존 기술 스택을 유지하세요. 이 명세와 tokens/registry/ScreenBrief를 기준으로 DocsShell, Foundations, Components, Patterns, AI Kit를 구성하세요. 토스 문서의 탐색·설명·예제 구조를 참고하고 Hudson의 #FD4D20·차콜·웜그레이·화이트 토큰을 적용하세요. 모바일 앱의 네이티브 확대 규칙이나 하단 탭바를 기본으로 사용하지 마세요. 모든 컴포넌트는 기존 export와 semantic token에서 선택하세요. 검색·라우팅·복사·상태 전환·키보드 조작을 실제로 작동하게 하세요. 데이터가 없는 예제는 데모라고 표시하세요. 색·간격·곡률·그림자·새 컴포넌트를 임의로 추가하지 마세요. 누락된 요구는 명세의 변경 절차로 해결하고 이유를 기록하세요. 문서와 API를 같은 원본에서 생성하고 구현 후 15절의 수용 기준을 검사하세요. 결과에는 변경 파일·실행 명령·검증 결과·미해결 항목을 기록하세요.
 
 ### 13.4 AI의 선택 순서
 
