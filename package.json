@@ -7,6 +7,11 @@
     "setup": "node scripts/setup-font.mjs",
     "build": "node generate.mjs",
     "check": "node --check dist/app.js && node generate.mjs",
-    "start": "python3 -m http.server 8000 --directory dist"
+    "start": "python3 -m http.server 8000 --directory dist",
+    "preview": "python3 -m http.server 8847 --bind 0.0.0.0 --directory dist",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
   }
 }

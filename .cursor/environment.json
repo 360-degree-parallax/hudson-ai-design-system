@@ -1,0 +1,9 @@
+{
+  "install": "npm ci && npm run setup && npm run build && npm run check",
+  "terminals": [
+    {
+      "name": "docs",
+      "command": "npm run preview"
+    }
+  ]
+}
