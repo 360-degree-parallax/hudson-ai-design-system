@@ -90,12 +90,20 @@ Typography 페이지에는 한글/영문/혼합 예문, 역할별 크기·행간
 
 ### 5.1 Primitive
 
+오렌지 램프는 #FD4D20(500)을 고정하고, 어두운 단계(600–900)는 OKLCH 색상각을 웜그레이 쪽(35°→50°)으로, 밝은 단계(50–400)는 피치 쪽으로 돌린다. 같은 색상각으로 명도만 낮추면 벽돌색·빨강으로 읽혀 웜그레이와 어울리지 않기 때문이다. 오류 빨강은 크림슨 쪽(약 18°)에 두어 브랜드 오렌지와 12° 이상 떨어뜨린다. 빌드는 이 색상각 규칙과 대비 쌍을 검사한다.
+
 | 토큰 | 값 | 사용 |
 |---|---|---|
-| orange-50 | #FFF1EB | 브랜드 연한 배경 |
-| orange-500 | #FD4D20 | 고정 브랜드 포인트 |
-| orange-600 | #E64218 | 강조 버튼 hover |
-| orange-700 | #C73512 | 밝은 배경의 작은 브랜드 텍스트·pressed |
+| orange-50 | #FEF5EE | 가장 연한 브랜드 바탕 |
+| orange-100 | #FFE9DB | 선택 상태 배경 |
+| orange-200 | #FED4BE | 연한 강조 경계 |
+| orange-300 | #FFB392 | 일러스트·차트 보조 |
+| orange-400 | #FE8B64 | 일러스트·차트 보조 |
+| orange-500 | #FD4D20 | 고정 브랜드 포인트·주요 행동 |
+| orange-600 | #E8480B | 주요 행동 hover (차콜 글자 4.62:1) |
+| orange-700 | #B34202 | 작은 브랜드 텍스트·pressed (흰 배경 5.68:1) |
+| orange-800 | #8B3901 | 진한 강조 텍스트 |
+| orange-900 | #662D03 | 가장 진한 강조 |
 | warm-0 | #FFFFFF | 기본 surface |
 | warm-50 | #FAF9F6 | 문서 전체 background |
 | warm-100 | #F5F3EF | inset·hover surface |
@@ -121,18 +129,20 @@ Typography 페이지에는 한글/영문/혼합 예문, 역할별 크기·행간
 | border.subtle | warm-200 | warm-700 |
 | border.control | warm-500 | warm-300 |
 | action.primary.bg | orange-500 | orange-500 |
+| action.primary.hover | orange-600 | orange-600 |
+| action.primary.pressed | orange-700 | orange-700 |
 | action.primary.fg | warm-950 | warm-950 |
-| action.selected.bg | orange-50 | warm-700 |
+| action.selected.bg | orange-100 | warm-700 |
 | action.selected.fg | orange-700 | warm-0 |
 | focus.ring | warm-950 | warm-0 |
 
 화면 면적 기준 사용 비율은 바탕(warm-0·50) 60%, 구조(warm-100–600) 25%, 차콜(warm-900·950) 12%, 포인트(orange) 3%로 시작한다. 오렌지는 화면당 주요 행동 하나와 선택 상태에만 쓴다. 이 비율은 tokens.json의 colorRatio에 기록한다.
 
-색은 primitive → semantic → component의 3단계로 참조한다. 화면 파일에서 HEX를 직접 사용하지 않는다. 실시간 상태·오류는 브랜드 컬러로 통합하지 않는다. 최소한의 상태색으로 danger #B42318 / surface #FFF1F0, success #17643B / surface #EDF7F0, warning #805500 / surface #FFF7E0를 별도 정의한다. inverse에서는 더 밝은 foreground와 어두운 surface의 조합을 추가하고 실제 대비 테스트 후 활성화한다. 상태는 항상 텍스트·아이콘과 함께 보여준다.
+색은 primitive → semantic → component의 3단계로 참조한다. 화면 파일에서 HEX를 직접 사용하지 않는다. 실시간 상태·오류는 브랜드 컬러로 통합하지 않는다. 최소한의 상태색으로 danger #B61D3A / surface #FEEFF0, success #17643B / surface #EDF7F0, warning #805500 / surface #FFF7E0를 별도 정의한다. inverse에서는 더 밝은 foreground와 어두운 surface의 조합을 추가하고 실제 대비 테스트 후 활성화한다. 상태는 항상 텍스트·아이콘과 함께 보여준다.
 
 ### 5.3 대비와 금지 조합
 
-WCAG 상대 휘도 공식으로 계산한 대비: #FD4D20 / #FFFFFF ≈ 3.355:1, #FD4D20 / #171614 ≈ 5.390:1, #C73512 / #FFFFFF ≈ 5.321:1. 일반 텍스트는 최소 4.5:1, 큰 텍스트는 3:1을 기준으로 한다. 큰 텍스트는 대략 24 CSS px 이상 또는 18.67px 이상 굵은 텍스트다.
+WCAG 상대 휘도 공식으로 계산한 대비: #FD4D20 / #FFFFFF ≈ 3.36:1, #FD4D20 / #171614 ≈ 5.39:1, #E8480B / #171614 ≈ 4.62:1, #B34202 / #FFFFFF ≈ 5.68:1. 일반 텍스트는 최소 4.5:1, 큰 텍스트는 3:1을 기준으로 한다. 큰 텍스트는 대략 24 CSS px 이상 또는 18.67px 이상 굵은 텍스트다.
 
 따라서 작은 흰색 글자가 들어가는 밝은 오렌지 버튼을 기본으로 만들지 않는다. 기본은 차콜 글자다. 흰 글자를 꼭 쓰는 변형은 orange-700 배경에 별도 컴포넌트 토큰으로 제공한다. #78716C는 흰 배경에서 약 4.798:1이지만 #F5F3EF에서 약 4.329:1이므로 모든 surface에 무조건 사용하지 않는다. 필수 입력 경계·아이콘 등에는 실제 인접 배경 대비 3:1을 검수하며, 약한 divider를 입력 경계로 재사용하지 않는다. hover·pressed·선택·투명도·inverse 조합도 개별 검수한다.
 
@@ -143,8 +153,8 @@ WCAG 상대 휘도 공식으로 계산한 대비: #FD4D20 / #FFFFFF ≈ 3.355:1,
 | 역할 | 기본 font-size | line-height | weight | 사용 |
 |---|---|---|---|---|
 | display | clamp(2.5rem, 1.5rem + 3vw, 4rem) | 1.1 | 700 | 마케팅 히어로에 한정 |
-| heading-xl | 2.5rem / 좁은 화면 2rem | 1.2 | 700 | 문서 H1 |
-| heading-lg | 2rem / 좁은 화면 1.75rem | 1.25 | 700 | 섹션 H2 |
+| heading-xl | 3rem / 좁은 화면 2.25rem | 1.15 | 700 | 문서 H1 |
+| heading-lg | 2.25rem / 좁은 화면 1.75rem | 1.2 | 700 | 섹션 H2 |
 | heading-md | 1.5rem | 1.35 | 600 | H3 |
 | heading-sm | 1.25rem | 1.4 | 600 | 패널·카드 제목 |
 | body-lg | 1.125rem | 1.6 | 400 | 도입 설명 |
@@ -283,7 +293,7 @@ tests/e2e/           키보드·라우팅·확대·반응형 검수
 ```css
 :root {
   --hds-color-orange-500: #fd4d20;
-  --hds-color-orange-700: #c73512;
+  --hds-color-orange-700: #b34202;
   --hds-color-warm-0: #fff;
   --hds-color-warm-50: #faf9f6;
   --hds-color-warm-950: #171614;
