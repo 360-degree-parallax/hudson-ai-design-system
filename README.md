@@ -56,3 +56,4 @@ npm run check
 - 새 토큰(이유·영향): `warm-800`(다크 입력 바탕), `bg.inverse`/`text.inverse`(차콜 inverse 면; Toast·Tooltip은 이후 오렌지 포인트 면 `action.primary.*`로 변경), `field.bg/border/border.hover`(연한 입력 필드), `action.primary.pressed.fg`, `status.*.border`. 모두 `generate.mjs`가 라이트·다크 대비 4.5:1을 검사합니다.
 - 알려진 절충: 연한 입력 필드 경계는 인접 대비 3:1에 못 미칩니다(요청에 따른 선택). 내부 글자·placeholder는 4.5:1을 유지합니다.
 - 미니멀 피드백 규칙: Alert·Toast·Dialog에는 아이콘을 쓰지 않습니다. Alert는 옅은 면+왼쪽 표시선, Dialog와 Pagination은 텍스트 액션이며, Toast·Tooltip은 오렌지 면+차콜 글자입니다. 언어 토글 라벨은 모든 화면에서 KO·EN입니다. 이 규칙은 명세 §0·§5·§8과 AI 위임 프롬프트(`basePrompt`)에 들어 있습니다.
+- 아이콘 세트: Iconography 페이지의 82개(표정 16·감정 상징 50·일반 16)를 24px 격자·선 1.75px의 차콜 라인만으로 그렸습니다(색·면 없음). 타일을 누르면 SVG가 복사되고 `hudson-icons.svg` 스프라이트를 내려받을 수 있습니다. 데이터 원본은 `dist/app.js`의 `ICONS` 배열이며 명세 §7과 위임 프롬프트에 반영되어 있습니다.
