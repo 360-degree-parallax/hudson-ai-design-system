@@ -523,3 +523,17 @@ input[type=range]{width:100%;accent-color:var(--text-primary)}
 [data-theme=dark] .band.dark{border-block:1px solid var(--border-subtle)}
 .copy-dialog{width:min(30rem,calc(100vw - 2rem));padding:var(--s6)}.copy-dialog h2{font-size:var(--hds-font-heading-sm);margin-bottom:var(--s2)}.copy-dialog p{font-size:var(--hds-font-body-sm);color:var(--text-secondary);margin-bottom:var(--s4)}
 @media(max-width:29.999rem){.brand-word{font-size:var(--hds-font-body-md)}.header-inner{gap:var(--s2)}}
+
+/* ===== Icon library ===== */
+.ico{flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.ico .f{fill:currentColor;fill-opacity:.12}.ico .s{fill:currentColor;stroke:none}.ico .p{fill:var(--action-bg);stroke:none}
+.icon-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-bottom:var(--s6)}
+.icon-group{margin:var(--s8) 0 var(--s1)}.icon-lead{font-size:var(--hds-font-body-sm);color:var(--text-secondary);max-width:60ch;margin-bottom:var(--s4)}
+.icon-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:var(--s3)}@media(max-width:63.999rem){.icon-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:35.999rem){.icon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.icon-tile{width:100%;display:flex;flex-direction:column;align-items:center;gap:var(--s1);padding:var(--s4) var(--s2) var(--s3);background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--r3);color:var(--text-primary);font:inherit;cursor:pointer;min-width:0}
+.icon-tile:hover{border-color:var(--border-control);background:var(--bg-subtle)}
+.icon-art{display:grid;place-items:center;width:3rem;height:3rem;margin-bottom:var(--s1)}.icon-art .ico{width:2rem;height:2rem}
+.icon-tile strong{font-size:var(--hds-font-body-sm);font-weight:600;overflow-wrap:anywhere;text-align:center}.icon-tile code{font-size:.75rem;color:var(--text-secondary);overflow-wrap:anywhere}
+.icon-sizes{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--s8);padding:var(--s6);background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--r3)}.icon-sizes span{display:flex;flex-direction:column;align-items:center;gap:var(--s2)}.icon-sizes code{font-size:.75rem;color:var(--text-secondary)}
+.icon-button .ico{width:1.5rem;height:1.5rem}
+.sp-icons{display:inline-flex;gap:var(--s3);color:var(--text-primary)}
