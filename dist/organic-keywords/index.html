@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오가닉 키워드 수집 자동화 대시보드</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:#1A1A1A;color:#FAFAFA;font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.tipw{position:relative}
+.tip{position:absolute;z-index:30;left:0;top:calc(100% + 6px);background:#111;border:1px solid #333;border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.6;color:#e5e5e5;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.tip.r{left:auto;right:0}
+.tipw:hover>.tip{opacity:1}
+tbody tr{cursor:pointer;transition:background .15s}
+tbody tr:hover{background:#222}
+tbody tr.sel{background:#2A2A2A}
+.copy{opacity:0;transition:opacity .15s}
+tr:hover .copy{opacity:1}
+.fade{transition:all .45s cubic-bezier(.2,.8,.2,1)}
+.nav{width:30px;height:30px;border-radius:8px;border:1px solid #333;background:#242424;color:#e5e5e5;display:inline-flex;align-items:center;justify-content:center}
+.nav:hover:not(:disabled){background:#2f2f2f}
+.nav:disabled{opacity:.3;cursor:default}
+.overflow-x-auto{overflow-x:auto}
+</style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+<div class="max-w-[1280px] mx-auto">
+  <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mb-5">
+    <h1 class="text-xl font-bold">오가닉 키워드 수집 자동화 대시보드</h1>
+    <div class="flex items-center gap-2">
+      <button id="prev" class="nav" title="이전 주차">◀</button>
+      <span id="weekLabel" class="text-sm font-semibold min-w-[170px] text-center"></span>
+      <button id="next" class="nav" title="다음 주차">▶</button>
+    </div>
+  </div>
+
+  <div class="tipw mb-3">
+    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-3 py-2 rounded-lg bg-[#242424] border border-[#333333]">
+      <span class="inline-flex items-center gap-1.5 text-[13px] font-semibold px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/40">📌 현재 운영 그룹: AI 영상 로컬라이징 &amp; 더빙</span>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="bg-[#1E293B] text-sky-300 border border-sky-500/30 text-xs px-2.5 py-1 rounded-full">AI 보이스 더빙</span>
+        <span class="bg-[#1E293B] text-sky-300 border border-sky-500/30 text-xs px-2.5 py-1 rounded-full">영상 현지화 서비스</span>
+        <span class="bg-[#1E293B] text-sky-300 border border-sky-500/30 text-xs px-2.5 py-1 rounded-full">다국어 음성 합성</span>
+        <span class="bg-[#1E293B] text-sky-300 border border-sky-500/30 text-xs px-2.5 py-1 rounded-full">유튜브 다국어 자막</span>
+        <span class="bg-[#1E293B] text-sky-300 border border-sky-500/30 text-xs px-2.5 py-1 rounded-full">기업용 AI 번역</span>
+      </div>
+    </div>
+    <div class="tip r">현재 자사에서 실제 운영 중인 기준 키워드입니다.<br>신규 후보 키워드 발굴 및 롱테일 확장 참조용.</div>
+  </div>
+  <div class="text-[11px] text-gray-500 mb-3 -mt-1.5 px-1">아래 표의 8개 키워드는 새롭게 발굴된 후보 키워드입니다.</div>
+
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="tipw">
+      <span class="inline-flex items-center gap-1.5 text-[13px] px-3 py-1.5 rounded-lg bg-[#242424] border border-[#333333]">📐 종합 점수 = (PC 비중 점수 × 40%) + (월 검색량 점수 × 30%) + (경쟁 효율 점수 × 30%)</span>
+      <div class="tip">• PC 비중: 45%↑ 만점 / 25% 미만 과락<br>• 월 검색량: 300↑ 만점 / 50↓ 과락<br>• 경쟁배수: 0.8↓ 만점</div>
+    </div>
+    <div class="tipw">
+      <div id="legend" class="flex flex-wrap gap-3 text-[12px] px-3 py-1.5 rounded-lg bg-[#242424] border border-[#333333]"></div>
+      <div id="legendTip" class="tip r"></div>
+    </div>
+  </div>
+
+  <div class="rounded-xl bg-[#242424] border border-[#333333] overflow-x-auto">
+    <table class="w-full text-sm min-w-[1100px]">
+      <thead>
+        <tr class="text-[12px] text-gray-400 border-b border-[#2E2E2E]">
+          <th class="py-3 px-3 text-left font-medium">우선순위</th>
+          <th class="py-3 px-3 text-left font-medium">추천 키워드</th>
+          <th class="py-3 px-3 text-right font-medium">총 월검색량</th>
+          <th class="py-3 px-3 text-right font-medium">웹(PC) 비중</th>
+          <th class="py-3 px-3 text-left font-medium">검색량 막대 (🔵 PC · 🟡 Mo)</th>
+          <th class="py-3 px-3 text-left font-medium">증가율 추이</th>
+          <th class="py-3 px-3 text-right font-medium">월 발행량</th>
+          <th class="py-3 px-3 text-left font-medium whitespace-nowrap">경쟁강도 <span class="text-[11px] text-gray-500 font-normal">(경쟁 효율 점수)</span></th>
+          <th class="py-3 px-3 text-center font-medium">종합 점수</th>
+          <th class="py-3 px-3 text-center font-medium">선정 유무</th>
+        </tr>
+      </thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+
+  <section class="mt-5 rounded-xl bg-[#282828] border border-[#333333] p-5">
+    <div class="flex items-baseline gap-3 mb-5">
+      <h2 class="text-lg font-bold">검색 사용자 분석</h2>
+      <span id="selName" class="text-sm text-[#10B981] font-semibold"></span>
+      <span class="text-[11px] text-gray-500 ml-auto">~ 표시: 원본 데이터에 없어 추정 보간한 값</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div><div class="text-xs text-gray-400 mb-3">성별</div><div id="gender"></div></div>
+      <div><div class="text-xs text-gray-400 mb-3">연령별</div><div id="age"></div></div>
+      <div><div class="text-xs text-gray-400 mb-3">요일별</div><div id="day"></div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const W2=[
+{k:"업무 자동화 솔루션",pc:250,mo:340,share:42.5,tr:45,trl:"우상향",pub:11800,comp:"아주 높음",x:20.0,score:67,st:"선정",m:58,f:42,age:{"30대":48,"20대":32,"40대":15},dmax:["월",25],dmin:["화",19]},
+{k:"숏폼 영상 콘티",pc:50,mo:290,share:17.2,tr:30,trl:"우상향",pub:200,comp:"낮음",x:1.7,score:49,st:"선정",m:82,f:18,age:{"20대":68,"30대":21,"10대":7},dmax:["토",49],dmin:["화",3]},
+{k:"노코드 웹빌더",pc:100,mo:60,share:58.3,tr:-75,trl:"우하향",pub:1600,comp:"높음",x:10.0,score:65,st:"보류",m:34,f:66,age:{"20대":52,"30대":29,"10대":12},dmax:["목",28],dmin:["일",6]},
+{k:"마케팅 대시보드",pc:100,mo:300,share:33.3,tr:-45,trl:"우하향",pub:2000,comp:"보통",x:5.0,score:53,st:"제외",m:84,f:16,age:{"30대":52,"40대":29,"50대":12},dmax:["월",38],dmin:["일",6]},
+{k:"스토리보드 양식",pc:0,mo:30,share:0.0,tr:2,trl:"보합",pub:35,comp:"아주 낮음",x:0.9,score:31,st:"보류",m:11,f:89,age:{"40대":74,"50대":16,"30대":5},dmax:["월",41],dmin:["토",2]},
+{k:"다국어 영상 로컬라이징",pc:170,mo:150,share:53.1,tr:40,trl:"급상승",pub:210,comp:"아주 낮음",x:0.7,score:100,st:"선정",m:62,f:38,age:{"30대":55,"40대":28,"20대":12},dmax:["화",32],dmin:["일",4]},
+{k:"기업용 AI 더빙 솔루션",pc:110,mo:130,share:45.8,tr:30,trl:"우상향",pub:360,comp:"낮음",x:1.5,score:88,st:"선정",m:55,f:45,age:{"30대":48,"20대":35,"40대":14},dmax:["수",27],dmin:["토",7]},
+{k:"유튜브 자동번역 어플",pc:120,mo:400,share:23.1,tr:-60,trl:"우하향",pub:4160,comp:"아주 높음",x:8.0,score:37,st:"제외",m:41,f:59,age:{"10대":45,"20대":38,"30대":12},dmax:["일",36],dmin:["목",8]}
+];
+const W1=[
+{k:"다국어 영상 로컬라이징",pc:150,mo:130,share:53.6,tr:25,trl:"우상향",pub:200,comp:"아주 낮음",x:0.7,score:91,st:"선정",m:60,f:40,age:{"30대":52,"40대":30,"20대":15},dmax:["화",30],dmin:["일",5]},
+{k:"업무 자동화 솔루션",pc:230,mo:315,share:42.2,tr:20,trl:"우상향",pub:10900,comp:"아주 높음",x:20.0,score:67,st:"선정",m:57,f:43,age:{"30대":47,"20대":33,"40대":16},dmax:["월",26],dmin:["화",18]},
+{k:"기업용 AI 더빙 솔루션",pc:95,mo:115,share:45.2,tr:15,trl:"우상향",pub:330,comp:"낮음",x:1.6,score:82,st:"선정",m:54,f:46,age:{"30대":46,"20대":36,"40대":15},dmax:["수",28],dmin:["토",6]},
+{k:"숏폼 영상 콘티",pc:45,mo:265,share:14.5,tr:10,trl:"우상향",pub:190,comp:"낮음",x:1.6,score:45,st:"보류",m:80,f:20,age:{"20대":65,"30대":24,"10대":8},dmax:["토",46],dmin:["화",4]},
+{k:"노코드 웹빌더",pc:140,mo:95,share:59.6,tr:-30,trl:"우하향",pub:1550,comp:"보통",x:6.6,score:71,st:"보류",m:36,f:64,age:{"20대":50,"30대":31,"10대":14},dmax:["목",27],dmin:["일",7]},
+{k:"마케팅 대시보드",pc:115,mo:330,share:25.8,tr:-15,trl:"우하향",pub:1950,comp:"보통",x:4.4,score:50,st:"제외",m:82,f:18,age:{"30대":50,"40대":31,"50대":13},dmax:["월",36],dmin:["일",7]},
+{k:"유튜브 자동번역 어플",pc:130,mo:450,share:22.4,tr:-20,trl:"우하향",pub:4050,comp:"보통",x:7.0,score:40,st:"제외",m:43,f:57,age:{"10대":43,"20대":39,"30대":13},dmax:["일",34],dmin:["목",9]},
+{k:"스토리보드 양식",pc:0,mo:28,share:0.0,tr:0,trl:"보합",pub:34,comp:"아주 낮음",x:1.2,score:29,st:"보류",m:12,f:88,age:{"40대":72,"50대":17,"30대":6},dmax:["월",40],dmin:["토",3]}
+];
+const WEEKS=[{label:"2026년 10월 1주차",data:W1},{label:"2026년 10월 2주차 (최신)",data:W2}];
+let wk=1,D=WEEKS[wk].data,sel=0;
+
+const C={"아주 높음":["#EF4444","🔴"],"높음":["#F97316","🟠"],"보통":["#EAB308","🟡"],"낮음":["#22C55E","🟢"],"아주 낮음":["#3B82F6","🔵"]};
+const LG=[["아주 높음","≥15.0배","경쟁이 매우 치열 — 신규 진입 비추천"],["높음","8.0~14.9배","상위 노출에 상당한 노력 필요"],["보통","3.0~7.9배","콘텐츠 품질에 따라 도전 가능"],["낮음","1.0~2.9배","진입 여건 양호 — 우선 공략 후보"],["아주 낮음","<1.0배 빈집","수요 대비 문서 부족 — 빈집 키워드"]];
+const ST=["선정","보류","제외"];
+const SC={"선정":"bg-[#10B981]/15 text-[#10B981] border-[#10B981]/40","보류":"bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/40","제외":"bg-gray-500/15 text-gray-400 border-gray-500/40"};
+const $=s=>document.getElementById(s);
+const fmt=n=>n.toLocaleString("ko-KR");
+
+$("legend").innerHTML=LG.map(l=>`<span>${C[l[0]][1]} ${l[0]} (${l[1]})</span>`).join('<span class="text-[#333]">|</span>');
+$("legendTip").innerHTML=LG.map(l=>`${C[l[0]][1]} <b>${l[0]}</b>: ${l[2]}`).join("<br>");
+
+function spark(d){
+  const col=d.trl==="보합"?"#9CA3AF":d.tr>0?"#10B981":"#EF4444";
+  const w=96,h=28,n=9;let ys=[];
+  if(d.trl==="보합"){ys=Array(n).fill(.5)}
+  else{const up=d.tr>0,a=Math.min(1,Math.abs(d.tr)/60+.3);
+    for(let i=0;i<n;i++){const t=i/(n-1),wob=Math.sin(i*1.7+d.pub%7)*.06;ys.push(up?.85-a*.7*Math.pow(t,2.2)+wob:.15+a*.7*Math.pow(t,1.6)+wob)}}
+  const p=ys.map((y,i)=>[3+i*(w-8)/(n-1),3+Math.max(0,Math.min(1,y))*(h-6)]);
+  let path=`M${p[0][0]},${p[0][1]}`;
+  for(let i=1;i<p.length;i++){const mx=(p[i-1][0]+p[i][0])/2;path+=` C${mx},${p[i-1][1]} ${mx},${p[i][1]} ${p[i][0]},${p[i][1]}`}
+  const e=p[p.length-1];
+  return `<div class="flex items-center gap-2"><svg width="${w}" height="${h}"><path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round"/><circle cx="${e[0]}" cy="${e[1]}" r="3.2" fill="${col}"/></svg><span style="color:${col}" class="font-semibold text-[13px] w-[52px]">${d.tr>0?"+":""}${d.tr}건</span></div>`;
+}
+function bar(d){
+  const tot=d.pc+d.mo,max=Math.max(...D.map(x=>x.pc+x.mo)),w=tot/max*100;
+  const pp=tot?d.pc/tot*100:0,mp=100-pp;
+  return `<div class="tipw w-[160px]"><div class="h-2.5 rounded-full bg-[#2E2E2E] overflow-hidden"><div class="h-full flex" style="width:${w}%"><div style="width:${pp}%;background:#3B82F6"></div><div style="width:${mp}%;background:#F59E0B"></div></div></div><div class="tip">PC: ${fmt(d.pc)}건 (${pp.toFixed(0)}%) / Mo: ${fmt(d.mo)}건 (${mp.toFixed(0)}%)</div></div>`;
+}
+function render(){
+  $("weekLabel").textContent=WEEKS[wk].label;
+  $("prev").disabled=wk===0;$("next").disabled=wk===WEEKS.length-1;
+  $("tb").innerHTML=D.map((d,i)=>{
+    const c=C[d.comp],low=d.share<25;
+    return `<tr data-i="${i}" class="border-b border-[#2E2E2E] ${i===sel?"sel":""}">
+    <td class="py-3.5 px-3 text-gray-400">#${i+1}</td>
+    <td class="py-3.5 px-3"><span class="font-bold text-white">${d.k}</span><button class="copy ml-2 align-middle text-gray-400 hover:text-white" data-copy="${d.k}" title="복사"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></td>
+    <td class="py-3.5 px-3 text-right"><div class="font-bold">${fmt(d.pc+d.mo)}</div><div class="text-[11px] text-gray-500">PC ${fmt(d.pc)} / Mo ${fmt(d.mo)}</div></td>
+    <td class="py-3.5 px-3 text-right"><span class="px-2 py-0.5 rounded-full text-[12px] ${low?"font-bold":"bg-[#3B82F6]/15 text-[#60A5FA] border border-[#3B82F6]/30"}" ${low?'style="color:#B91C1C;background:rgba(153,27,27,.18)"':""}>${d.share.toFixed(1)}%</span></td>
+    <td class="py-3.5 px-3">${bar(d)}</td>
+    <td class="py-3.5 px-3">${spark(d)}</td>
+    <td class="py-3.5 px-3 text-right">${fmt(d.pub)}</td>
+    <td class="py-3.5 px-3"><span class="inline-flex items-center gap-1.5 whitespace-nowrap"><span class="px-2 py-0.5 rounded-full text-[12px] font-semibold" style="background:${c[0]}26;color:${c[0]};border:1px solid ${c[0]}66">${d.comp}</span><span class="text-[13px]">${d.x.toFixed(1)}배</span></span></td>
+    <td class="py-3.5 px-3 text-center"><span class="inline-block min-w-[44px] px-2 py-0.5 rounded-md border text-[13px] font-bold border-[#333] text-gray-200 bg-[#1f1f1f]">${d.score}</span><span class="text-[10px] text-gray-500"> /100</span></td>
+    <td class="py-3.5 px-3 text-center"><button data-st="${i}" class="px-3 py-1 rounded-md border text-[12px] font-semibold ${SC[d.st]}">${d.st}</button></td>
+  </tr>`}).join("");
+  panel();
+}
+function fillAge(d){const g=["10대","20대","30대","40대","50대"],o={...d.age},miss=g.filter(a=>!(a in o)),rest=Math.max(0,100-Object.values(o).reduce((s,v)=>s+v,0));miss.forEach(a=>o[a]=Math.round(rest/miss.length));return o}
+function fillDay(d,days){const o={},fr=[.55,.3,.7,.4,.6];let i=0;days.forEach(x=>{if(x===d.dmax[0])o[x]=d.dmax[1];else if(x===d.dmin[0])o[x]=d.dmin[1];else o[x]=Math.round(d.dmin[1]+(d.dmax[1]-d.dmin[1])*fr[i++%5])});return o}
+function panel(){
+  const d=D[sel];
+  $("selName").textContent=`· ${d.k}`;
+  const user=(t,c,h)=>`<svg width="${h*22/30}" height="${h}" viewBox="0 0 22 30" fill="${c}"><circle cx="11" cy="5" r="4"/>${t==="f"?'<path d="M11 10c-4 0-6 3-7 8h4v8h6v-8h4c-1-5-3-8-7-8z"/>':'<path d="M5 11h12v9h-3v9h-6v-9H5z"/>'}</svg>`;
+  const mDom=d.m>=d.f,S=(dom)=>dom?{c:"#F97316",h:42,fs:"text-[17px] font-extrabold",bar:"#F97316"}:{c:"#FDBA74",h:30,fs:"text-[12px] font-medium",bar:"rgba(253,186,116,.4)"};
+  const sm=S(mDom),sf=S(!mDom);
+  $("gender").innerHTML=`<div class="flex justify-between items-end mb-1.5 h-[44px]">${user("m",sm.c,sm.h)}${user("f",sf.c,sf.h)}</div>
+   <div class="flex h-2.5 gap-1"><div class="fade rounded-full" style="width:${d.m}%;background:${sm.bar}"></div><div class="fade rounded-full" style="width:${d.f}%;background:${sf.bar}"></div></div>
+   <div class="flex justify-between items-baseline mt-1.5"><span class="${sm.fs}" style="color:${sm.c}">남 ${d.m}%</span><span class="${sf.fs}" style="color:${sf.c}">여 ${d.f}%</span></div>`;
+  const ages=["10대","20대","30대","40대","50대"],A=fillAge(d),vals=ages.map(a=>A[a]),mxv=Math.max(...vals),mnv=Math.min(...vals);
+  $("age").innerHTML=`<div class="flex items-end gap-2 h-[140px]">${ages.map(a=>{const v=A[a],est=!(a in d.age),hh=Math.max(5,v/80*100),hi=v===mxv,tiny=v<=5,lo=v===mnv&&!hi&&!tiny,col=hi?"#8B5CF6":tiny?"#3A3D42":lo?"#EF4444":"#6B7280",tc=hi?"#A78BFA":tiny?"#6B7280":lo?"#F87171":"#D1D5DB";
+    return `<div class="flex-1 flex flex-col items-center justify-end h-full"><span class="text-[11px] mb-1 font-semibold" style="color:${tc}">${est?"~":""}${v}%</span><div class="fade w-full rounded-md" style="height:${hh}%;background:${col}"></div></div>`}).join("")}</div>
+   <div class="flex gap-2 mt-1.5">${ages.map(a=>`<span class="flex-1 text-center text-[11px] text-gray-400">${a}</span>`).join("")}</div>`;
+  const days=["월","화","수","목","금","토","일"],V=fillDay(d,days),dm=Math.max(...days.map(x=>V[x]));
+  $("day").innerHTML=`<div class="flex items-end gap-1.5 h-[140px]">${days.map(x=>{const mx=x===d.dmax[0],mn=x===d.dmin[0],v=V[x],est=!mx&&!mn,hh=Math.max(8,v/dm*100);
+    return `<div class="flex-1 flex flex-col items-center justify-end h-full"><span class="text-[11px] mb-1 font-semibold" style="color:${mx?"#10B981":mn?"#F87171":"#D1D5DB"}">${est?"~":""}${v}%</span><div class="fade w-full rounded-md" style="height:${hh}%;background:${mx?"#10B981":mn?"#EF4444":"#6B7280"}"></div></div>`}).join("")}</div>
+   <div class="flex gap-1.5 mt-1.5">${days.map(x=>`<span class="flex-1 text-center text-[11px] text-gray-400">${x}</span>`).join("")}</div>`;
+}
+function setWeek(n){if(n<0||n>=WEEKS.length)return;wk=n;D=WEEKS[wk].data;sel=0;render()}
+$("prev").onclick=()=>setWeek(wk-1);
+$("next").onclick=()=>setWeek(wk+1);
+$("tb").addEventListener("click",e=>{
+  const cp=e.target.closest("[data-copy]");
+  if(cp){try{navigator.clipboard.writeText(cp.dataset.copy)}catch(_){}cp.style.color="#10B981";setTimeout(()=>cp.style.color="",700);e.stopPropagation();return}
+  const s=e.target.closest("[data-st]");
+  if(s){const d=D[+s.dataset.st];d.st=ST[(ST.indexOf(d.st)+1)%3];sel=+s.dataset.st;render();return}
+  const r=e.target.closest("tr");if(r){sel=+r.dataset.i;render()}
+});
+render();
+</script>
+</body>
+</html>
